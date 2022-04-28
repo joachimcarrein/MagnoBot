@@ -1,11 +1,17 @@
+require("dotenv").config()
+//require("./modules/tools.js")
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
+//const Logger = require("./modules/Logger.js")
+
 const Discord = require("discord.js")
 
 const prefix = "!"
 
-require("dotenv").config()
+//console.log(Date.now())
 
 const client = new Discord.Client({
     intents: [
+        //"GUILD_MEMBERS", // a member enters the server => guildMemberAdd
         "GUILDS",
         "GUILD_MESSAGES"
     ]
@@ -18,7 +24,7 @@ client.on("ready", () => {
 client.on("messageCreate", async msg => {
     //if our message doesnt start with our defined prefix, dont go any further into function
     if (!msg.content.startsWith(prefix)) {
-        console.log('no prefix')
+        //console.log('no prefix')
         return
     }
 
@@ -37,6 +43,13 @@ client.on("messageCreate", async msg => {
         msg.reply('wow, what a great post')
     }
 
+    if (command === "hi") {
+        if (args.length === 0) {
+        msg.reply(`Hi, <@${msg.author.id}>!`)
+        } else {
+            msg.reply(`<@${msg.author.id}> says hi: ${args.join(" ")}`)
+        }
+    }
 
     if (command === "clear") {
         //default deletes message itself plus previous
@@ -50,7 +63,9 @@ client.on("messageCreate", async msg => {
         //bulk delete the messages
         msg.channel.bulkDelete(num);
         //notify channel of deleted messages
-        msg.channel.send(`deleted  ${args[0]} posts for you`);
+        let newmsg = await msg.channel.send(`deleted ${args[0]} posts for you.\nMessage will self destruct in 5 seconds.`);
+        await delay(5000)
+        newmsg.delete()
     }
 })
 
