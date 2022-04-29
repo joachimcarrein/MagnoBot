@@ -1,4 +1,4 @@
-entrypoint = "src/main.js"
+entrypoint = "./src/main.js"
 
 [interpreter]
 command = [
