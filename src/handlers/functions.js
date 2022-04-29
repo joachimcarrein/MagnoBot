@@ -26,6 +26,5 @@ module.exports = async (bot, reload) => {
                 client.aliases.set(alias, pull.name); //adds it to functions
             });
     }
-    if (errors.length == 0) return console.log("Events: Build Success");
-    console.log("Errors:" + errors);
+    console.log(`Loaded ${client.functions.size} functions`)
 };

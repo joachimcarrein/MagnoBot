@@ -1,7 +1,7 @@
 module.exports = {
     name: "clear",
     aliases: ["c"],
-    category: "channelMgmt",
+    category: "channel",
     permissions: 1,
     run: async ({ client, message, args }) => {
         // default deletes message itself plus previous

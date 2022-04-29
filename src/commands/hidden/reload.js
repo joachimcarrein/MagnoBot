@@ -1,9 +1,10 @@
 const Discord = require("discord.js")
+const fs = require("fs")
 
 module.exports = {
     name: "reload",
     aliases: ["r"],
-    category: "dev",
+    category: "hidden",
     Permissions: -1,
     description: "reloads the bot",
     run: async (bot) => {
@@ -11,6 +12,7 @@ module.exports = {
         await client.loadCommands(bot, true);
         await client.loadEvents(bot, true);
         await client.loadButtons(bot, true)
+        client.categories = fs.readdirSync("./src/commands/");
 
         message.channel.send({
             embeds: [

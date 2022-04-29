@@ -1,6 +1,7 @@
 require("dotenv").config()
 
 const Discord = require("discord.js")
+const fs = require("fs")
 
 const client = new Discord.Client({
     intents: [
@@ -20,6 +21,7 @@ client.events = new Discord.Collection()
 client.buttons = new Discord.Collection()
 client.aliases = new Discord.Collection()
 client.functions = new Discord.Collection()
+client.categories = fs.readdirSync("./src/commands/");
 
 client.loadEvents = (bot, reload) => require("./handlers/events")(bot, reload)
 client.loadEvents(bot, false)

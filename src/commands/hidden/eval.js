@@ -2,8 +2,8 @@ const Discord = require("discord.js");
 module.exports = {
     name: "eval",
     aliases: ["ev"],
-    category: "dev",
-    adminOnly: true,
+    category: "hidden",
+    permissions: -1,
     description: "evaluates javascript code",
     run: async (bot) => {
         let {message, args, client, config, prefix} = bot
