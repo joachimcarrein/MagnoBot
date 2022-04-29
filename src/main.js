@@ -1,3 +1,5 @@
+console.log("Starting up...")
+
 require("dotenv").config()
 //require("./modules/tools.js")
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
@@ -11,6 +13,7 @@ const prefix = "!"
 
 //console.log(Date.now())
 
+console.log("Creating client")
 const client = new Discord.Client({
     intents: [
         //"GUILD_MEMBERS", // a member enters the server => guildMemberAdd
@@ -85,4 +88,5 @@ function getQuote() {
         })
 }
 
+console.log("Log in client")
 client.login(process.env.DISCORD_TOKEN)
