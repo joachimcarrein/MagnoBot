@@ -3,6 +3,8 @@ require("dotenv").config()
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 //const Logger = require("./modules/Logger.js")
 
+const fetch = (url) => import('node-fetch').then(({default: fetch}) => fetch(url));
+
 const Discord = require("discord.js")
 
 const prefix = "!"
@@ -45,7 +47,7 @@ client.on("messageCreate", async msg => {
 
     if (command === "hi") {
         if (args.length === 0) {
-        msg.reply(`Hi, <@${msg.author.id}>!`)
+            msg.reply(`Hi, <@${msg.author.id}>!`)
         } else {
             msg.reply(`<@${msg.author.id}> says hi: ${args.join(" ")}`)
         }
@@ -67,6 +69,20 @@ client.on("messageCreate", async msg => {
         await delay(5000)
         newmsg.delete()
     }
+
+    if (command === "inspire") {
+        getQuote().then(quote => msg.channel.send(quote))
+    }
 })
+
+function getQuote() {
+    return fetch("https://zenquotes.io/api/random", null)
+        .then(res => {
+            return res.json()
+        })
+        .then(data => {
+            return data[0]["q"] + " -" + data[0]["a"]
+        })
+}
 
 client.login(process.env.DISCORD_TOKEN)
