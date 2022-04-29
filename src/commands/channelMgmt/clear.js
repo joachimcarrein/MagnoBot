@@ -1,10 +1,8 @@
-const { delay } = require("../../util/functions")
-
 module.exports = {
     name: "clear",
+    aliases: ["c"],
     category: "channelMgmt",
-    permissions: ["MANAGE_MESSAGES"],
-    adminOnly: false,
+    permissions: 1,
     run: async ({ client, message, args }) => {
         // default deletes message itself plus previous
         let num = 2;
@@ -21,7 +19,11 @@ module.exports = {
         //notify channel of deleted messages
         let newmsg = await message.channel.send(`Deleted ${num - 1} posts.\nThis message will be removed in 5 seconds.`);
 
-        await delay(5000)
-        newmsg.delete()
+        await client.functions.get("functions").delay(5000)
+        try {
+            await newmsg.delete()   
+        } catch (error) {
+            console.log("Message already gone probably")
+        }        
     }
 }

@@ -1,9 +1,11 @@
 const Discord = require("discord.js")
 
+const {getPermissionLevel, getPermissionName} = require("../handlers/permissions")
+
 module.exports = {
     name: "messageCreate",
     run: async function runAll(bot, message) {
-        const { client, prefix, admins } = bot
+        const { client, prefix } = bot
 
         if (!message.guild) return
 
@@ -15,16 +17,12 @@ module.exports = {
 
         const cmdstr = args.shift().toLowerCase()
 
-        let command = client.commands.get(cmdstr)
+        let command = client.commands.get(cmdstr) || client.commands.get(client.aliases.get(cmdstr))
         if (!command) return // undefined command
 
         let member = message.member
 
-        if (command.adminOnly && !admins.includes(member.id)) {
-            return message.reply("This command is only available to the bot admins.")
-        }
-
-        if (command.permissions && member.permissions.missing(command.permissions).length !== 0) {
+        if (command.permissions && getPermissionLevel(message.member) > command.permissions) {
             return message.reply("You do not have permission to run this command.")
         }
 

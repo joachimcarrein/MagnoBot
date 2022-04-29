@@ -2,9 +2,9 @@ const {MessageActionRow, MessageButton, MessageEmbed} = require("discord.js")
 
 module.exports = {
     name: "roleselector",
+    aliases: ["rs"],
     category: "test",
-    permissions: [],
-    adminOnly: true,
+    permissions: -1,
     run: async ({client, message, args}) => {
         message.channel.send({
             embeds: [

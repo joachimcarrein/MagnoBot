@@ -1,8 +1,8 @@
 module.exports = {
     name: "hi",
+    aliases: [],
     category: "fun",
-    permissions: [],
-    adminOnly: false,
+    permissions: 2,
     run: async ({ client, message, args }) => {
         if (args.length === 0) {
             message.reply(`Hi, <@${message.author.id}>!`)

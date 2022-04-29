@@ -12,16 +12,14 @@ const client = new Discord.Client({
 
 let bot = {
     client,
-    prefix: "!",
-    admins: [
-        "403654158609154058" //MagnoBE#0826
-    ]
+    prefix: "!"
 }
 
 client.commands = new Discord.Collection()
 client.events = new Discord.Collection()
-client.slashcommands = new Discord.Collection()
 client.buttons = new Discord.Collection()
+client.aliases = new Discord.Collection()
+client.functions = new Discord.Collection()
 
 client.loadEvents = (bot, reload) => require("./handlers/events")(bot, reload)
 client.loadEvents(bot, false)
@@ -29,11 +27,11 @@ client.loadEvents(bot, false)
 client.loadCommands = (bot, reload) => require("./handlers/commands")(bot, reload)
 client.loadCommands(bot, false)
 
-client.loadSlashCommands = (bot, reload) => require("./handlers/slashcommands")(bot, reload)
-client.loadSlashCommands(bot, false)
-
 client.loadButtons = (bot, reload) => require("./handlers/buttons")(bot, reload)
 client.loadButtons(bot, false)
+
+client.loadFunctions = (client, reload) => require(`./handlers/functions`)(client, reload);
+client.loadFunctions(bot, false);
 
 module.exports = bot
 

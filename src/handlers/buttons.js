@@ -1,5 +1,5 @@
 const fs = require("fs")
-const { getFiles } = require("../util/functions")
+const { getFiles } = require("../functions/functions")
 
 module.exports = (bot, reload) => {
     const { client } = bot

@@ -1,4 +1,4 @@
-const { getFiles } = require("../util/functions")
+const { getFiles } = require("../functions/functions")
 const fs = require("fs")
 
 module.exports = (bot, reload) => {
@@ -12,6 +12,12 @@ module.exports = (bot, reload) => {
                 delete require.cache[require.resolve(`../commands/${category}/${f}`)]
             const command = require(`../commands/${category}/${f}`)
             client.commands.set(command.name, command)
+
+            // If file has aliases and aliases are in an Array (List), register each alias in to the collection (index.js:9)
+            if (command.aliases)
+                command.aliases.forEach((alias) => {
+                    client.aliases.set(alias, command.name); //adds it to commands
+                });
         })
     })
 
