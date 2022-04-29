@@ -6,5 +6,7 @@ module.exports = {
         console.log(`   Logged in as ${bot.client.user.tag}!   `);
         console.log("")
         console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+
+        bot.client.announceSlashCommands(bot)
     }
 }

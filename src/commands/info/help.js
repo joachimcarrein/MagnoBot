@@ -8,9 +8,20 @@ module.exports = {
     usage: "[command | alias]",
     run: async (bot) => {
         let { client, message, args, prefix } = bot;
-        if (args[0]) return getCMD(client, message, args[0]);
-        else return getAll(client, message, prefix);
+
+        let embed = null
+
+        if (args[0]) 
+            embed = getCMD(client, message, args[0]);
+        else 
+            embed = getAll(client, message, prefix);
+
+        if (!embed) return
+
+        return message.channel.send({embeds: [embed]})
     },
+    getCMD,
+    getAll
 };
 function getAll(client, message, prefix) {
     // let reacts = [
@@ -51,7 +62,7 @@ function getAll(client, message, prefix) {
             "]"
     })
 
-    message.channel.send({ embeds: [em] });
+    return em
 }
 function getCMD(client, message, input) {
     const embed = new Discord.MessageEmbed();
@@ -71,5 +82,5 @@ function getCMD(client, message, input) {
         info += `\n**Usage**: ${cmd.usage}`;
         embed.setFooter({ text: `Syntax: <> = required, [] = optional` });
     }
-    return message.channel.send({embeds: [embed.setColor("GREEN").setDescription(info)]});
+    return embed.setColor("GREEN").setDescription(info)
 }

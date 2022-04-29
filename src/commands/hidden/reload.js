@@ -12,7 +12,10 @@ module.exports = {
         await client.loadCommands(bot, true);
         await client.loadEvents(bot, true);
         await client.loadButtons(bot, true)
+        await client.loadSlashCommands(bot, true)
         client.categories = fs.readdirSync("./src/commands/");
+
+        await client.announceSlashCommands(bot)
 
         message.channel.send({
             embeds: [
@@ -24,6 +27,7 @@ module.exports = {
                         [`\`${client.aliases.size}\``, `Aliases`],
                         [`\`${client.events.size}\``, `Events`],
                         [`\`${client.buttons.size}\``, `Buttons`],
+                        [`\`${client.slashcommands.size}\``, `SlashCommands`],
                     ]))
             ]
         })

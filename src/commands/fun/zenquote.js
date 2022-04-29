@@ -4,11 +4,11 @@ module.exports = {
     category: "fun",
     permissions: 2,
     run: async ({ client, message, args }) => {
-        getQuote().then(quote => message.channel.send(quote))
+        getQuote(client).then(quote => message.channel.send(quote))
     }
 }
 
-function getQuote() {
+function getQuote(client) {
     return client.functions.get("functions").fetch("https://zenquotes.io/api/random", null)
         .then(res => {
             return res.json()
