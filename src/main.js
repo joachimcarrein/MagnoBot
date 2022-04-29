@@ -5,9 +5,11 @@ require("dotenv").config()
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 //const Logger = require("./modules/Logger.js")
 
-const fetch = (url) => import('node-fetch').then(({default: fetch}) => fetch(url));
+const fetch = (url) => import('node-fetch').then(({ default: fetch }) => fetch(url));
 
 const Discord = require("discord.js")
+
+const generateImage = require("./modules/images")
 
 const prefix = "!"
 
@@ -75,6 +77,14 @@ client.on("messageCreate", async msg => {
 
     if (command === "inspire") {
         getQuote().then(quote => msg.channel.send(quote))
+    }
+
+    if (command === "welcome") {        
+        const img = await generateImage(msg.author)
+        msg.reply({
+            content: `Hello, <@${msg.author.id}>`,
+            files: [img]
+        })
     }
 })
 
