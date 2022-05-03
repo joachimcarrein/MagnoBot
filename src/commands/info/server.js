@@ -2,7 +2,7 @@ const Discord = require("discord.js")
 module.exports = {
     name: "server",
     aliases: [],
-    category: "fun",
+    category: "info",
     permissions: 2,
     run: async ({ client, message, args }) => {
         let serverEmbed = new Discord.MessageEmbed()
