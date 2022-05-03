@@ -50,4 +50,8 @@ function initEvents(bot) {
     client.on("interactionCreate", (interaction) => {
         triggerEventHandler(bot, "interactionCreate", interaction)
     })
+
+    client.on("messageDelete", (message) => {
+        triggerEventHandler(bot, "messageDelete", message)
+    })
 }

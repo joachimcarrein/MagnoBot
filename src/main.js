@@ -25,6 +25,7 @@ client.buttons = new Discord.Collection()
 client.aliases = new Discord.Collection()
 client.functions = new Discord.Collection()
 client.slashcommands = new Discord.Collection()
+client.snipes = new Discord.Collection()
 client.categories = fs.readdirSync("./src/commands/");
 
 client.loadEvents = (bot, reload) => require("./handlers/events")(bot, reload)
