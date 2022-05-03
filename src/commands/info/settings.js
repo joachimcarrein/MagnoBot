@@ -24,7 +24,7 @@ module.exports = {
             if ("prefix" === args[0]) {
                 guildSettings.prefix = args[1]
                 await guildSettings.save()
-                message.reply('Setting has been applied')
+                message.reply(`Settings updated: ${args[0]} to ${args[1]}`)
             }
         }
     }

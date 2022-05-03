@@ -3,7 +3,8 @@ const run = async (client, interaction) => {
     const help = client.commands.get("help")
 
     if (!command) {
-        interaction.reply({ embeds: [help.getAll(client, interaction, "")] })
+        const guildSettings = await client.functions.get("functions").getGuildSettings(interaction.guild.id)
+        interaction.reply({ embeds: [help.getAll(client, interaction, guildSettings.prefix)] })
     }
     else {
         interaction.reply({ embeds: [help.getCMD(client, interaction, command)] })
