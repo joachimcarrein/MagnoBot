@@ -1,6 +1,7 @@
 require("dotenv").config()
 
 const Discord = require("discord.js")
+const keepAlive = require('./server')
 const Levels = require('discord-xp')
 const fs = require("fs")
 const mongoose = require("./_database/mongoose")
@@ -50,3 +51,5 @@ client.login(process.env.DISCORD_TOKEN)
 const connString = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@magnobot.ic6jh.mongodb.net/MagnoBotDB?retryWrites=true&w=majority`
 mongoose.init(connString)
 Levels.setURL(connString)
+
+keepAlive()
