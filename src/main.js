@@ -1,11 +1,13 @@
 require("dotenv").config()
 
 const Discord = require("discord.js")
+const Levels = require('discord-xp')
 const fs = require("fs")
+const mongoose = require("./_database/mongoose")
 
 const client = new Discord.Client({
     intents: [
-        // "GUILD_MEMBERS", // a member enters the server => guildMemberAdd
+        "GUILD_MEMBERS",
         "GUILDS",
         "GUILD_MESSAGES"
     ]
@@ -13,7 +15,6 @@ const client = new Discord.Client({
 
 let bot = {
     client,
-    prefix: "!",
     slashguilds: ["968886418883637278"]
 }
 
@@ -45,3 +46,7 @@ client.announceSlashCommands = (bot, reload) => require("./handlers/announceslas
 module.exports = bot
 
 client.login(process.env.DISCORD_TOKEN)
+
+const connString = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@magnobot.ic6jh.mongodb.net/MagnoBotDB?retryWrites=true&w=majority`
+mongoose.init(connString)
+Levels.setURL(connString)

@@ -73,6 +73,22 @@ const fetch = (url) => import('node-fetch').then(({ default: fetch }) => fetch(u
     }
 }
 
+const Guild = require('../_database/models/guildSchema')
+const mongoose = require('mongoose')
+
+async function getGuildSettings(guildID) {
+    let guildSettings = await Guild.findOne({ guildID: guildID})
+    if (!guildSettings) {
+        guildSettings = await new Guild({
+            _id: mongoose.Types.ObjectId(),
+            guildID: guildID
+        })
+        await guildSettings.save().catch(error => console.log(error))
+    }
+
+    return guildSettings
+}
+
 
 module.exports = {
 	name: "functions",
@@ -81,5 +97,6 @@ module.exports = {
     fetch,
     autoAlign,
     response,
-	formatTime
+	formatTime,
+    getGuildSettings
 }
