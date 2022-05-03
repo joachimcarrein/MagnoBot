@@ -4,8 +4,9 @@ const Discord = require("discord.js")
 module.exports = {
     name: "roleselector",
     aliases: ["rs"],
-    category: "test",
+    category: "hidden",
     permissions: -1,
+    description: 'test for roleselector buttons',
     run: async ({client, message, args}) => {
 
         roles = message.mentions.roles

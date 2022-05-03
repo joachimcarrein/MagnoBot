@@ -7,14 +7,15 @@ module.exports = {
     description: "Returns all commands, or one specific command's info",
     usage: "[command | alias]",
     run: async (bot) => {
-        let { client, message, args, prefix } = bot;
+        let { client, message, args } = bot;
 
         let embed = null
+        let guildSettings = await client.functions.get("functions").getGuildSettings(message.guild.id)
 
         if (args[0]) 
             embed = getCMD(client, message, args[0]);
         else 
-            embed = getAll(client, message, prefix);
+            embed = getAll(client, message, guildSettings.prefix);
 
         if (!embed) return
 

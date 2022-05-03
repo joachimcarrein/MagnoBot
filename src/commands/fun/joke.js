@@ -15,6 +15,10 @@ module.exports = {
         let joke = await getJoke()
 
         // have our bot reply using the data returned from our API call
-        message.reply(`${joke.setup}\n\n${joke.delivery}`)
+        if (!joke.joke) {
+            message.reply(`${joke.setup}\n\n${joke.delivery}`)   
+        } else {
+            message.reply(joke.joke)
+        }
     }
 }
