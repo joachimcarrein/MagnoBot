@@ -21,7 +21,8 @@ module.exports = {
                 serverEmbed.setTitle(`You joined ${message.guild.name} at ${message.member.joinedAt}.`)
                 break;
             default:
-                serverEmbed.setTitle(`Welcome to server ${message.guild.name}\nUse one of the following options for more info: members, boosts, joined`)
+                serverEmbed.setTitle(`Welcome to server ${message.guild.name}`)
+                .setDescription('Use one of the following options for more info: members, boosts, joined.')
                 break;
         }
 
