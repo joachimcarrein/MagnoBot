@@ -22,7 +22,7 @@ module.exports = {
             const value = Number(args[3])
             const levelUser = await Levels.fetch(mentionedMember.id, message.guild.id)
             if (!levelUser) return message.reply(`Member not registered in the database yet.`)
-            if (!value) return message.reply(`The number is not a valid number.\n\`${usage}\``)
+            if (value === undefined) return message.reply(`The number is not a valid number.\n\`${usage}\``)
             if (args[2] == 'add') {
                 try {
                     await Levels.appendXp(mentionedMember.id, message.guild.id, value)
@@ -50,7 +50,7 @@ module.exports = {
             const value = Number(args[3])
             const levelUser = await Levels.fetch(mentionedMember.id, message.guild.id)
             if (!levelUser) return message.reply(`Member not registered in the database yet.`)
-            if (!value) return message.reply(`The number is not a valid number.\n\`${usage}\``)
+            if (value === undefined) return message.reply(`The number is not a valid number.\n\`${usage}\``)
             if (args[2] == 'add') {
                 try {
                     await Levels.appendLevel(mentionedMember.id, message.guild.id, value)

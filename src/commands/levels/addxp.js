@@ -12,6 +12,6 @@ module.exports = {
         const xpToAdd = args[1]
 
         await Levels.appendXp(mentionedMember.id, message.guild.id, xpToAdd)
-        message.reply(`Added ${xpToAdd} xp to ${mentionedMember.username}`)
+        await message.reply(`Added ${xpToAdd} xp to ${mentionedMember.username}`)
     }
 }
