@@ -32,7 +32,6 @@ module.exports = {
         
         let member = message.member
         let userPermLevel = getPermissionLevel(member)
-        console.log(userPermLevel)
 
         if (command.permissions !== undefined && userPermLevel > command.permissions) {
             return message.reply("You do not have permission to run this command.")
