@@ -3,7 +3,6 @@ module.exports = {
     name: "server",
     aliases: [],
     category: "info",
-    permissions: 2,
     run: async ({ client, message, args }) => {
         let serverEmbed = new Discord.MessageEmbed()
             .setColor("DARK_GOLD")

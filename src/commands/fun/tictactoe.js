@@ -10,7 +10,6 @@ module.exports = {
                  "Use parameter u for bot game, but certain user start. eg. !ttt u\n" +
                  "Use parameter b for bot game, but certain bot start. eg. !ttt b\n" +
                  "If bot starts, you probably gonna loose.",
-    permissions: 2,
     run: async ({ client, message, args }) => {
         let target = "c"
         if (args[0] == "2p") target = "u"        

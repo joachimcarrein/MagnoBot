@@ -2,7 +2,6 @@ module.exports = {
     name: "ping",
     aliases: [],
     category: "info",
-    permissions: 2,
     description: 'Simple ping with timings',
     run: async ({ client, message, args }) => {
         const msg = await message.channel.send(`:ping_pong: Main bot Pinging...`);

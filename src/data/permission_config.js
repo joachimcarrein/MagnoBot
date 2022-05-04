@@ -22,15 +22,22 @@ module.exports = {
             guild_perms:["ADMINISTRATOR"]
         },
         {
+            name: "Manager",
+            level: 10,
+            user_ids:[],
+            role_ids:[],
+            guild_perms:["MANAGE_CHANNELS"]
+        },        
+        {
             name: "Moderator",
-            level: 1,
+            level: 20,
             user_ids:[],
             role_ids:[],
             guild_perms:["MANAGE_MESSAGES"]
         },
         {
             name: "Member",
-            level: 2,
+            level: 99,
             user_ids: [],
             role_ids: [],
             guild_perms: ["SEND_MESSAGES"]

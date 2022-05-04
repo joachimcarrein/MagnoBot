@@ -3,7 +3,7 @@ module.exports = {
     name: "editlevel",
     aliases: [],
     category: "levels",
-    permissions: 1,
+    permissions: 20,
     description: 'edit a user level',
     run: async ({ client, message, args}) => {
         let guildSettings = await client.functions.get("functions").getGuildSettings(message.guild.id)

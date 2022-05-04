@@ -4,7 +4,6 @@ module.exports = {
     name: "snipe",
     aliases: [],
     category: "fun",
-    permissions: 2,
     run: async ({ client, message, args }) => {        
         const msg = client.snipes.get(message.channel.id)
 

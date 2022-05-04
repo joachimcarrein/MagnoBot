@@ -2,7 +2,6 @@ module.exports = {
     name: "zenquote",
     aliases: ["zq"],
     category: "fun",
-    permissions: 2,
     run: async ({ client, message, args }) => {
         getQuote(client).then(quote => message.channel.send(quote))
     }

@@ -2,7 +2,6 @@ module.exports = {
     name: "joke",
     aliases: ["j"],
     category: "fun",
-    permissions: 2,
     run: async ({ client, message, args }) => {
         let getJoke = async () => {
             //make API call

@@ -5,7 +5,7 @@ module.exports = {
     name: "reload",
     aliases: ["r"],
     category: "hidden",
-    Permissions: -1,
+    Permissions: 0,
     description: "reloads the bot",
     run: async (bot) => {
         var { client, message, config } = bot;

@@ -4,7 +4,6 @@ module.exports = {
     name: "level",
     aliases: [],
     category: "levels",
-    permissions: 2,
     description: 'Show the level of a user',
     run: async ({ client, message, args }) => {
         const target = message.mentions.users.first() || message.author; // Grab the target.

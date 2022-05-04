@@ -6,8 +6,7 @@ const Blacklist = require('../../_database/models/blacklistSchema')
 module.exports = {
     name: "showblacklist",
     aliases: [],
-    category: "hidden",
-    Permissions: 2,
+    category: "info",
     description: "Show all blacklisted users",
     run: async (bot) => {
         var { client, message, config, args } = bot;

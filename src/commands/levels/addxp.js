@@ -3,7 +3,7 @@ module.exports = {
     name: "addxp",
     aliases: [],
     category: "levels",
-    permissions: 1,
+    permissions: 20,
     description: 'add xp to a user',
     run: async ({ client, message, args }) => {
         let mentionedMember = message.mentions.users.first() || message.guild.members.cache.find(entry => entry.user.username === args[0])?.user
