@@ -2,7 +2,7 @@ module.exports = {
     name: "nuke",
     aliases: [],
     category: "channel",
-    permissions: 0,
+    permissions: 10,
     run: async ({ client, message, args }) => {
         // default deletes message itself plus previous
         let reason = args.join(" ")

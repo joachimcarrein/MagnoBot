@@ -2,7 +2,7 @@ module.exports = {
     name: "clear",
     aliases: ["c"],
     category: "channel",
-    permissions: 1,
+    permissions: 20,
     run: async ({ client, message, args }) => {
         // default deletes message itself plus previous
         let num = 2;
