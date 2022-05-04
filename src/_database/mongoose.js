@@ -13,11 +13,11 @@ module.exports = {
         mongoose.connect(connString, dbOptions)
         mongoose.Promise = global.Promise
         mongoose.connection.on('connected', () => {
-            console.log('bot has connected to mongo')
+            console.log('bot has connected to mongodb')
         })
 
         mongoose.connection.on('disconnected', () => {
-            console.log('bot has disconnected to mongo')
+            console.log('bot has disconnected to mongodb')
         })
 
         mongoose.connection.on('error', (err) => {
