@@ -9,7 +9,7 @@ module.exports = {
     }
 }
 
-const handleButton = (bot, interaction) => {
+const handleButton = async (bot, interaction) => {
     const {client} = bot
 
     // "name-param1-param2-..."
@@ -19,10 +19,14 @@ const handleButton = (bot, interaction) => {
     const button = client.buttons.get(name)
 
     if (!button) return
-    button.run(client, interaction, params)
+    try {
+        await button.run(client, interaction, params)
+    } catch (error) {
+        console.log(error)
+    }
 }
 
-const handleSlashCommand = (bot, interaction) => {
+const handleSlashCommand = async (bot, interaction) => {
     const {client} = bot
 
     if (!interaction.inGuild()) return interaction.reply("This command can only be used in a server")
@@ -34,5 +38,9 @@ const handleSlashCommand = (bot, interaction) => {
     if (slashcmd.permissions && interaction.member.permissions.missing(slashcmd.permissions).length !== 0)
         return interaction.reply("You do not have permission to run this slashcommand.")
 
-    slashcmd.run(client, interaction)
+    try {
+        await slashcmd.run(client, interaction)
+    } catch (error) {
+        console.log(error)
+    }
 }

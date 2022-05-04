@@ -54,7 +54,7 @@ module.exports = {
                 await message.reply(errMsg)
             }
             else
-                console.error(errMsg)
+                console.log(errMsg)
         }
     }
 }

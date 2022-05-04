@@ -6,7 +6,7 @@ module.exports = async (bot) => {
         console.log(`Loading guild [${slashguild}]`)
         const guild = client.guilds.cache.get(slashguild)
         if (!guild)
-            console.error("Target Guild not found")
+            console.log("Target Guild not found")
         console.log(`*** ${guild.name}`)
         guild.commands.set([...client.slashcommands.values()])
     });
