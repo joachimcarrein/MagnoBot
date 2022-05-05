@@ -1,7 +1,7 @@
 module.exports = {
     name: "rockpaperscissors",
     aliases: ["rps"],
-    category: "fun",
+    category: "games",
     description: "Play rock paper scissors agains bot",
     usage: "<rock | paper | scissors>",
     run: async ({ client, message, args }) => {

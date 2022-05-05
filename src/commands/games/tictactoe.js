@@ -3,7 +3,7 @@ const ttt = require("../../buttons/ttt")
 module.exports = {
     name: "tictactoe",
     aliases: ["ttt"],
-    category: "fun",
+    category: "games",
     description: "Play tic tac toe.\n" +
         "Use parameter 2p for 2 player game. eg. !ttt 2p\n" +
         "Chance of bot start = 1/5.\n" +
