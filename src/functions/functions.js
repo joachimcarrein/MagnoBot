@@ -8,6 +8,13 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 const fetch = (url) => import('node-fetch').then(({ default: fetch }) => fetch(url));
 
+function setEmbedFooter(embed, client) {
+    embed.setTimestamp()
+    .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
+
+    return embed
+}
+
 /**
  * Automatic Alignment
  * @param {Array} align left and right fields to be aligned in size 2 arrays
@@ -98,5 +105,6 @@ module.exports = {
     autoAlign,
     response,
 	formatTime,
-    getGuildSettings
+    getGuildSettings,
+    setEmbedFooter
 }
