@@ -15,6 +15,8 @@ module.exports = {
             num = parseInt(args[0]) + 1;
         }
 
+        if (num > 100) num = 100
+
         //bulk delete the messages
         message.channel.bulkDelete(num);
 
