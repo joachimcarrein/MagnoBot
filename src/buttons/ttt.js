@@ -209,9 +209,9 @@ module.exports = {
                 if (returnMsg.includes('wins')) {
                     components = []
                     returnMsg += '\n\n'
-                    returnMsg += `${getEmoji(game[0])}\t${getEmoji(game[1])}\t${getEmoji(game[2])}\n\n`
-                    returnMsg += `${getEmoji(game[3])}\t${getEmoji(game[4])}\t${getEmoji(game[5])}\n\n`
-                    returnMsg += `${getEmoji(game[6])}\t${getEmoji(game[7])}\t${getEmoji(game[8])}\n\n`
+                    returnMsg += `${getEmoji(game[0])}\t${getEmoji(game[1])}\t${getEmoji(game[2])}\n`
+                    returnMsg += `${getEmoji(game[3])}\t${getEmoji(game[4])}\t${getEmoji(game[5])}\n`
+                    returnMsg += `${getEmoji(game[6])}\t${getEmoji(game[7])}\t${getEmoji(game[8])}\n`
                 }
             }
         }
