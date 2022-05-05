@@ -2,9 +2,9 @@ const Discord = require("discord.js")
 module.exports = {
     name: "settings",
     aliases: [],
-    category: "info",
+    category: "server",
     permissions: 0,
-    description: 'Guild bot settings',
+    description: 'Guild bot server settings',
     run: async ({ client, message, args }) => {
         let guildSettings = await client.functions.get("functions").getGuildSettings(message.guild.id)
 

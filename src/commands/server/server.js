@@ -2,7 +2,7 @@ const Discord = require("discord.js")
 module.exports = {
     name: "server",
     aliases: [],
-    category: "info",
+    category: "server",
     run: async ({ client, message, args }) => {
         let serverEmbed = new Discord.MessageEmbed()
             .setColor("DARK_GOLD")
