@@ -6,15 +6,17 @@ module.exports = {
     category: "fun",
     description: "Shows the last deleted message in the channel",
     usage: "",
-    run: async ({ client, message, args }) => {        
+    run: async ({ client, message, args }) => {
         const msg = client.snipes.get(message.channel.id)
 
         if (!msg) return message.channel.send("Nothing to snipe in channel yet.")
-        const snipeEmbed = new Discord.MessageEmbed()
-        .setAuthor({name: msg.author.tag, iconURL: msg.author.displayAvatarURL()})
-        .setDescription(msg.content)
+        let snipeEmbed = new Discord.MessageEmbed()
+            .setAuthor({ name: msg.author.tag, iconURL: msg.author.displayAvatarURL() })
+            .setDescription(msg.content)
 
-        message.channel.send({embeds: [snipeEmbed]})
+        snipeEmbed = client.functions.get("functions").setEmbedFooter(snipeEmbed, client)
+
+        message.channel.send({ embeds: [snipeEmbed] })
     }
 }
 

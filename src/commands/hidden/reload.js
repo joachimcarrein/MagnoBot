@@ -18,19 +18,19 @@ module.exports = {
 
         await client.announceSlashCommands(bot)
 
-        message.channel.send({
-            embeds: [
-                new Discord.MessageEmbed()
-                    .setColor("#8DC685")
-                    .setTitle("Bot Reload Complete")
-                    .setDescription(client.functions.get("functions").autoAlign([
-                        [`\`${client.commands.size}\``, `Commands`],
-                        [`\`${client.aliases.size}\``, `Aliases`],
-                        [`\`${client.events.size}\``, `Events`],
-                        [`\`${client.buttons.size}\``, `Buttons`],
-                        [`\`${client.slashcommands.size}\``, `SlashCommands`],
-                    ]))
-            ]
-        })
+        let embed = new Discord.MessageEmbed()
+            .setColor("#8DC685")
+            .setTitle("Bot Reload Complete")
+            .setDescription(client.functions.get("functions").autoAlign([
+                [`\`${client.commands.size}\``, `Commands`],
+                [`\`${client.aliases.size}\``, `Aliases`],
+                [`\`${client.events.size}\``, `Events`],
+                [`\`${client.buttons.size}\``, `Buttons`],
+                [`\`${client.slashcommands.size}\``, `SlashCommands`],
+            ]))
+
+        embed = client.functions.get("functions").setEmbedFooter(embed, client)
+
+        message.channel.send({ embeds: [embed] })
     }
 }

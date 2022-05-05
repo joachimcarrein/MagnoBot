@@ -1,7 +1,7 @@
 const fs = require("fs")
 
 const getFiles = (path, ending) => {
-    return fs.readdirSync(path).filter(f=>f.endsWith(ending))
+    return fs.readdirSync(path).filter(f => f.endsWith(ending))
 }
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
@@ -10,7 +10,7 @@ const fetch = (url) => import('node-fetch').then(({ default: fetch }) => fetch(u
 
 function setEmbedFooter(embed, client) {
     embed.setTimestamp()
-    .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
+        .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
 
     return embed
 }
@@ -22,36 +22,16 @@ function setEmbedFooter(embed, client) {
  * @param {number} lock spaces to add inbetween
  * @returns {String} properly aligned message
  */
- function autoAlign(align, char, lock) {
-	let str = "";
-	char = !char ? " " : char;
+function autoAlign(align, char, lock) {
+    let str = "";
+    char = !char ? " " : char;
 
-	let max = lock ? lock : align[0][0].length;
-	for (arr of align) max = max < arr[0].length ? arr[0].length : max;
-	max += 2;
+    let max = lock ? lock : align[0][0].length;
+    for (arr of align) max = max < arr[0].length ? arr[0].length : max;
+    max += 2;
 
-	for (arr of align) str += `${arr[0]}${char.repeat(max - arr[0].length)}${arr[1]}\n`;
-	return str;
-}
-
-/**
- * Sends a Success/Error response to reply to a message
- * @param {Discord.Message} message the message for which this function is responding to
- * @param {String} desc message to be displayed in the responding message
- * @param {boolean} ok true for ok, false for error
- * @param {boolean} noDelete autodeletes response in 5 seconds unless true
- */
- function response(message, desc, ok, noDelete) {
-	//replies an error message to user
-	var embed = new Discord.MessageEmbed()
-		.setTitle(ok ? "Success!" : "Error!")
-		.setColor(ok ? "#00ff00" : "ff0000") //change the colors here
-		.setDescription(`**${ok ? "`✅` " : "`❌` "}** ${desc}`);
-	return message.channel.send(embed).then((m) => {
-		if (!noDelete) {
-			m.delete({ timeout: 5000 });
-		}
-	});
+    for (arr of align) str += `${arr[0]}${char.repeat(max - arr[0].length)}${arr[1]}\n`;
+    return str;
 }
 
 /**
@@ -59,7 +39,7 @@ function setEmbedFooter(embed, client) {
  * @param {number} time in ms
  * @returns {string} rounded time value as string
  */
- function formatTime(time) {
+function formatTime(time) {
     //time is in ms, this function changes time to a rounded time
     //returns string time
     const sec = 1000;
@@ -84,7 +64,7 @@ const Guild = require('../_database/models/guildSchema')
 const mongoose = require('mongoose')
 
 async function getGuildSettings(guildID) {
-    let guildSettings = await Guild.findOne({ guildID: guildID})
+    let guildSettings = await Guild.findOne({ guildID: guildID })
     if (!guildSettings) {
         guildSettings = await new Guild({
             _id: mongoose.Types.ObjectId(),
@@ -98,13 +78,12 @@ async function getGuildSettings(guildID) {
 
 
 module.exports = {
-	name: "functions",
+    name: "functions",
     getFiles,
     delay,
     fetch,
     autoAlign,
-    response,
-	formatTime,
+    formatTime,
     getGuildSettings,
     setEmbedFooter
 }

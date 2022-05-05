@@ -16,6 +16,9 @@ module.exports = {
                 .setDescription("If nothing is shown, there are no properties assigned\nProperties: Prefix")
                 
                 if (guildSettings.prefix) embed.addField("Prefix",guildSettings.prefix)
+
+                embed = client.functions.get("functions").setEmbedFooter(embed, client)
+                
                 message.channel.send({embeds: [embed]})
         } else {
             const properties = ["prefix"]

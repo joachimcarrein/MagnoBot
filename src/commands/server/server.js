@@ -27,6 +27,8 @@ module.exports = {
                 break;
         }
 
+        serverEmbed = client.functions.get("functions").setEmbedFooter(serverEmbed, client)
+
         message.channel.send({ embeds: [serverEmbed] })
     }
 }
