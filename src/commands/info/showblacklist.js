@@ -8,6 +8,7 @@ module.exports = {
     aliases: [],
     category: "info",
     description: "Show all blacklisted users",
+    usage: "",
     run: async (bot) => {
         var { client, message, config, args } = bot;
 

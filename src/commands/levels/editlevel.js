@@ -5,6 +5,7 @@ module.exports = {
     category: "levels",
     permissions: 20,
     description: 'edit a user level',
+    usage: "<user> <xp | level> <add | set | remove> <number>",
     run: async ({ client, message, args}) => {
         let guildSettings = await client.functions.get("functions").getGuildSettings(message.guild.id)
         let usage = `${guildSettings.prefix}editlevel @member [xp, level] [add, set, remove] <number>`

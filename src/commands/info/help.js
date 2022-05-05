@@ -69,7 +69,7 @@ function getCMD(client, message, input) {
     const embed = new Discord.MessageEmbed();
     const cmd =
         client.commands.get(input.toLowerCase()) ||
-        client.aliases.get(input.toLowerCase());
+        client.commands.get(client.aliases.get(input.toLowerCase()));
     let info = `No information found for command **${input.toLowerCase()}**`;
     if (!cmd)
         //no specified command

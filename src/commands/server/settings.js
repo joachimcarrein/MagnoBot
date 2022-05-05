@@ -5,6 +5,7 @@ module.exports = {
     category: "server",
     permissions: 0,
     description: 'Guild bot server settings',
+    usage: "[prefix <value>]",
     run: async ({ client, message, args }) => {
         let guildSettings = await client.functions.get("functions").getGuildSettings(message.guild.id)
 

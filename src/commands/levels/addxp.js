@@ -5,6 +5,7 @@ module.exports = {
     category: "levels",
     permissions: 20,
     description: 'add xp to a user',
+    usage: "<member> <xp>",
     run: async ({ client, message, args }) => {
         let mentionedMember = message.mentions.users.first() || message.guild.members.cache.find(entry => entry.user.username === args[0])?.user
         if (!mentionedMember) mentionedMember = message.member.user

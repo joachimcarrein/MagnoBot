@@ -7,6 +7,7 @@ module.exports = {
     category: "hidden",
     Permissions: 0,
     description: "reloads the bot",
+    usage: "",
     run: async (bot) => {
         var { client, message, config } = bot;
         await client.loadCommands(bot, true);

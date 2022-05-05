@@ -5,6 +5,7 @@ module.exports = {
     category: "hidden",
     permissions: -1,
     description: "evaluates javascript code",
+    usage: "<script>",
     run: async (bot) => {
         let {message, args, client, config} = bot
         let guildSettings = await client.functions.get("functions").getGuildSettings(message.guild.id)

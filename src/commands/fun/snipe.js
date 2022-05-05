@@ -4,6 +4,8 @@ module.exports = {
     name: "snipe",
     aliases: [],
     category: "fun",
+    description: "Shows the last deleted message in the channel",
+    usage: "",
     run: async ({ client, message, args }) => {        
         const msg = client.snipes.get(message.channel.id)
 

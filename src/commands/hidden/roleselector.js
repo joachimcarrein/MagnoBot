@@ -7,6 +7,7 @@ module.exports = {
     category: "hidden",
     permissions: -1,
     description: 'test for roleselector buttons',
+    usage: "[roles]",
     run: async ({client, message, args}) => {
 
         roles = message.mentions.roles

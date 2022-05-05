@@ -3,6 +3,8 @@ module.exports = {
     aliases: [],
     category: "channel",
     permissions: 10,
+    description: "Clones the channel and deletes the original",
+    usage: "[reason]",
     run: async ({ client, message, args }) => {
         // default deletes message itself plus previous
         let reason = args.join(" ")

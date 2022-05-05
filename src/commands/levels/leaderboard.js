@@ -5,6 +5,7 @@ module.exports = {
     aliases: ["lb"],
     category: "levels",
     description: 'Show the servers top 5 leaderboard',
+    usage: "",
     run: async ({ client, message, args }) => {
         const rawLeaderboard = await Levels.fetchLeaderboard(message.guild.id, 5)
 

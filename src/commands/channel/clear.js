@@ -3,6 +3,8 @@ module.exports = {
     aliases: ["c"],
     category: "channel",
     permissions: 20,
+    description: "Clears a number of message in the channel",
+    usage: "[number]",
     run: async ({ client, message, args }) => {
         // default deletes message itself plus previous
         let num = 2;

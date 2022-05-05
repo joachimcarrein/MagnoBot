@@ -2,6 +2,8 @@ module.exports = {
     name: "rockpaperscissors",
     aliases: ["rps"],
     category: "fun",
+    description: "Play rock paper scissors agains bot",
+    usage: "<rock | paper | scissors>",
     run: async ({ client, message, args }) => {
         const options = ['rock', 'paper', 'scissors']
         const optionsImage = [':rock:', ':newspaper:', ':scissors:']

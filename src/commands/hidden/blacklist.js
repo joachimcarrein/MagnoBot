@@ -8,7 +8,8 @@ module.exports = {
     aliases: [],
     category: "hidden",
     Permissions: -1,
-    description: "blacklist a user",
+    description: "blacklist a user from using the bot",
+    usage: "<user> [reason]",
     run: async (bot) => {
         var { client, message, config, args } = bot;
 

@@ -6,6 +6,7 @@ module.exports = {
     aliases: [],
     category: "info",
     description: 'Displays bot info',
+    usage: "",
     run: async ({ client, message, args }) => {
         const botMember = await message.guild.members.fetch(client.user.id)
         const botembed = new Discord.MessageEmbed()
@@ -21,6 +22,7 @@ module.exports = {
             .addField("On the server since:", `${botMember.joinedAt}`, true)
             .addField("Guilds Using this bot: ", `\`${client.guilds.cache.size}\``, true)
             .setTimestamp()
+            .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
 
         return await message.reply({ embeds: [botembed] });
     }
