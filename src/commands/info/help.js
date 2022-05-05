@@ -13,7 +13,7 @@ module.exports = {
         let guildSettings = await client.functions.get("functions").getGuildSettings(message.guild.id)
 
         if (args[0]) 
-            embed = getCMD(client, message, args[0]);
+            embed = getCMD(client, message, args[0], guildSettings.prefix);
         else 
             embed = getAll(client, message, guildSettings.prefix);
 
@@ -65,7 +65,7 @@ function getAll(client, message, prefix) {
 
     return em
 }
-function getCMD(client, message, input) {
+function getCMD(client, message, input, prefix) {
     const embed = new Discord.MessageEmbed();
     const cmd =
         client.commands.get(input.toLowerCase()) ||
@@ -80,7 +80,7 @@ function getCMD(client, message, input) {
         info += `\n**Aliases**: ${cmd.aliases.map(a => `\`${a}\``).join(", ")}`;
     if (cmd.description) info += `\n**Description**: ${cmd.description}`;
     if (cmd.usage) {
-        info += `\n**Usage**: ${cmd.usage}`;
+        info += `\n**Usage**: ${prefix}${cmd.name} ${cmd.usage}`;
         embed.setFooter({ text: `Syntax: <> = required, [] = optional` });
     }
     return embed.setColor("GREEN").setDescription(info)
