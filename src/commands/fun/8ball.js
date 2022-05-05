@@ -2,8 +2,8 @@ module.exports = {
     name: "8ball",
     aliases: [],
     category: "fun",
-    description: "Replies with Hi user",
-    usage: "[text]",
+    description: "ask a question to the 8ball",
+    usage: "",
     run: async ({ client, message, args }) => {
         answer = await message.channel.send({
 			embeds: [{
