@@ -36,7 +36,7 @@ module.exports = {
                         Permissions.FLAGS.USE_APPLICATION_COMMANDS,
                         Permissions.FLAGS.MANAGE_EVENTS,
                         Permissions.FLAGS.EMBED_LINKS,
-                        Permissions.FLAGS.MUTE_MEMBERS
+                        Permissions.FLAGS.MODERATE_MEMBERS
                     ],
                     reason: "MagnoBot Owner asked for it"
                 }
