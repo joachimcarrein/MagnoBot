@@ -7,7 +7,7 @@ module.exports = {
     description: "Show your permission level within this server",
     usage: "",
     run: async ({ client, message, args }) => {
-        message.reply(`Your permission level is ${getPermissionName(getPermissionLevel(message.member))}`)
+        message.reply(`Your permission level is \`${getPermissionName(getPermissionLevel(message.member))}\``)
     }
 }
 
