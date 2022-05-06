@@ -6,6 +6,6 @@ module.exports = {
     description: 'Kill bot process.',
     usage: "",
     run: async ({ client, message, args }) => {
-        process.exit()
+        process.exit(-1)
     }
 }
