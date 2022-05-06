@@ -14,17 +14,37 @@ module.exports = {
             .get(`https://www.reddit.com/r/${args}.json?sort=top&t=week`)
             .query({ limit: 800 });
 
-        const allowed = message.channel.nsfw ? body.data.children : body.data.children.filter(post => !post.data.over_18);
+        const allowedTypes = ["gif", "gifv", "png", "jpg", "jpeg", "webm", "mp4", "webp", ".svg"]
+
+        function endsWithAny(suffixes, string, string2) {
+            searchString = string2 || string
+            for (let suffix of suffixes) {
+                if (string.endsWith(suffix))
+                    return true;
+            }
+            return false;
+        }
+
+        let allowed = message.channel.nsfw ? body.data.children : body.data.children.filter(post => !post.data.over_18);
+        allowed = allowed.filter(post => endsWithAny(allowedTypes, post.data.url, post.data.url_overridden_by_dest))
+
         if (!allowed.length) return message.reply("We are running out of dank meme. 😂😂😂");
         const randomNumber = Math.floor(Math.random() * allowed.length);
-        const img = allowed[randomNumber].data.url
+        const chosenOption = allowed[randomNumber]
+        let img = chosenOption.data.url_overridden_by_dest || chosenOption.data.url
+
+        //console.log(img)
+
+        if (img.endsWith("gifv")) img = img.slice(0, -1)
+        //console.log(img)
+
         let embed = new MessageEmbed()
             .setColor("PURPLE")
-            .setTitle(allowed[randomNumber].data.title)
-            .setDescription(allowed[randomNumber].data.author)
+            .setTitle(chosenOption.data.title)
+            .setDescription(chosenOption.data.author)
             .setImage(img)
-            .addField("Information: ", "Up vote:" + allowed[randomNumber].data.ups + " / Comment: " + allowed[randomNumber].data.num_comments)
-            .setURL("https://reddit.com" + allowed[randomNumber].data.permalink)
+            .addField("Information: ", "Up vote:" + chosenOption.data.ups + " / Comment: " + chosenOption.data.num_comments)
+            .setURL("https://reddit.com" + chosenOption.data.permalink)
 
         embed = client.functions.get("functions").setEmbedFooter(embed, client)
 
