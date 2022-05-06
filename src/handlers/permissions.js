@@ -36,7 +36,7 @@ const getPermissionLevel = (member) => {
 const getPermissionName = (level) => {
     const permission = permissionLevels.find(permlvl => permlvl.level === level)
     if (!permission)
-        return "invalid permission level"
+        return "invalid/unknown permission level"
     return permission.name
 }
 
