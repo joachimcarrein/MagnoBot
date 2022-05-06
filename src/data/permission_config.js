@@ -6,7 +6,7 @@
 module.exports = {
     permissionLevels: [
         {
-            name: "Owner",
+            name: "Bot Owner",
             level: -1,
             user_ids:[
                 "403654158609154058" // MagnoBE#0826
