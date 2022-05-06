@@ -28,7 +28,7 @@ module.exports = {
         let allowed = message.channel.nsfw ? body.data.children : body.data.children.filter(post => !post.data.over_18);
         allowed = allowed.filter(post => endsWithAny(allowedTypes, post.data.url, post.data.url_overridden_by_dest))
 
-        if (!allowed.length) return message.reply("We are running out of dank meme. 😂😂😂");
+        if (!allowed.length) return message.reply("No posts found with supported image types.");
         const randomNumber = Math.floor(Math.random() * allowed.length);
         const chosenOption = allowed[randomNumber]
         let img = chosenOption.data.url_overridden_by_dest || chosenOption.data.url
