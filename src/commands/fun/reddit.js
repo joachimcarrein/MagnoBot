@@ -29,7 +29,7 @@ module.exports = {
         allowed = allowed.filter(post => endsWithAny(allowedTypes, post.data.url, post.data.url_overridden_by_dest))
 
         let returnMsg = "No posts found with supported image types."
-        if (message.channel.nsfw) returnMsg += " Or which are not NSFW."
+        if (!message.channel.nsfw) returnMsg += " Or which are not NSFW."
         if (!allowed.length) return message.reply(returnMsg);
         const randomNumber = Math.floor(Math.random() * allowed.length);
         const chosenOption = allowed[randomNumber]
