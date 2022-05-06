@@ -5,7 +5,6 @@ const mongoose = require("./_database/mongoose")
 const keepAlive = require('./server')
 keepAlive()
 
-
 const connString = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@magnobot.ic6jh.mongodb.net/MagnoBotDB?retryWrites=true&w=majority`
 mongoose.init(connString)
 Levels.setURL(connString)
