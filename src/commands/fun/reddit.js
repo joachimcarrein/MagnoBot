@@ -10,9 +10,15 @@ module.exports = {
     run: async ({ client, message, args }) => {
         const subReddit = args.join(" ")
         if (!subReddit) return await message.channel.send("No subreddit supplied.")
-        const { body } = await superagent
+
+        try {
+            const { body } = await superagent
             .get(`https://www.reddit.com/r/${args}.json?sort=top&t=week`)
             .query({ limit: 800 });
+        } catch (error) {
+            return await message.channel.send("Could not fetch from reddit.")
+        }
+
 
         const allowedTypes = ["gif", "gifv", "png", "jpg", "jpeg", "webm", "mp4", "webp", ".svg"]
 
