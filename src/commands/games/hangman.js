@@ -97,7 +97,11 @@ class HangManGame {
                 .setAuthor({ name: "Hangman game", iconURL: "https://imgur.com/0guxxtY.png" })
                 .setDescription(this.getDescription())
                 .addField('Letters Guessed', this.guessed.length == 0 ? '\u200b' : this.guessed.join(" "))
+                .addFields("Wrong Guesses", `${this.wrongs} / 6`)
                 .addField('How To Play', "React to this message using the emojis that look like letters (🅰️, 🇹, )")
+
+            if (this.debug)
+                embed.addField("Debug", "word is " + this.word)
 
             embed = this.client.functions.get("functions").setEmbedFooter(embed, this.client)
 
@@ -138,8 +142,6 @@ class HangManGame {
             + "   \n|     \n|__________\n\n"
             + this.word.split("").map(l => this.guessed.includes(l.toUpperCase()) ? l : "_").join(" ")
             + "```"
-
-            if (this.debug) returnMsg += "\nDebug: word is " + this.word + "\n"
 
             return returnMsg
     }
