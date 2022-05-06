@@ -14,6 +14,7 @@ module.exports = {
         await client.loadEvents(bot, true);
         await client.loadButtons(bot, true)
         await client.loadSlashCommands(bot, true)
+        await client.loadFunctions(bot, true);
         client.categories = fs.readdirSync("./src/commands/");
 
         await client.announceSlashCommands(bot)
@@ -27,6 +28,7 @@ module.exports = {
                 [`\`${client.events.size}\``, `Events`],
                 [`\`${client.buttons.size}\``, `Buttons`],
                 [`\`${client.slashcommands.size}\``, `SlashCommands`],
+                [`\`${client.functions.size}\``, `Functions`],
             ]))
 
         embed = client.functions.get("functions").setEmbedFooter(embed, client)
