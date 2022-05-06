@@ -8,11 +8,11 @@ module.exports = {
     usage: "",
     run: async ({ client, message, args }) => {
         const debug = args[0] === "debug"
-        let result = await client.functions.get("functions").fetch('https://random-word-api.herokuapp.com/word', null)
+        let result = await client.functions.get("functions").fetch('https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&includePartOfSpeech=noun&minCorpusCount=8000&maxCorpusCount=-1&minDictionaryCount=3&maxDictionaryCount=-1&minLength=6&maxLength=12&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5', null)
         //convert to object we can work with
         let json = await result.json()
 
-        new HangManGame().newGame(json[0], message, client, debug)
+        new HangManGame().newGame(json.word, message, client, debug)
     }
 }
 
@@ -49,7 +49,11 @@ class HangManGame {
             .setColor("BLUE")
             .setAuthor({ name: "Hangman game", iconURL: "https://imgur.com/0guxxtY.png" })
             .setDescription(this.getDescription())
-            .addField('How To Play', "React to this message using the emojis that look like letters (🅰️, 🇹, )")
+            .addField('Wrong Guesses', `${this.wrongs} / 6`)
+            .addField('How To Play', "React to this message using the emojis that look like letters (🅰️, 🇹, ❌, 💤, ...)")
+
+        if (this.debug)
+            embed.addField("Debug", "word is " + this.word)
 
         embed = this.client.functions.get("functions").setEmbedFooter(embed, this.client)
 
@@ -97,8 +101,8 @@ class HangManGame {
                 .setAuthor({ name: "Hangman game", iconURL: "https://imgur.com/0guxxtY.png" })
                 .setDescription(this.getDescription())
                 .addField('Letters Guessed', this.guessed.length == 0 ? '\u200b' : this.guessed.join(" "))
-                .addFields("Wrong Guesses", `${this.wrongs} / 6`)
-                .addField('How To Play', "React to this message using the emojis that look like letters (🅰️, 🇹, )")
+                .addField('Wrong Guesses', `${this.wrongs} / 6`)
+                .addField('How To Play', "React to this message using the emojis that look like letters (🅰️, 🇹, ❌, 💤, ...)")
 
             if (this.debug)
                 embed.addField("Debug", "word is " + this.word)
@@ -119,6 +123,7 @@ class HangManGame {
             .setAuthor({ name: "Hangman game", iconURL: "https://imgur.com/0guxxtY.png" })
             .setDescription((win ? "**Chat Wins!**" : "**Chat losses**"))
             .addField('Word was', this.word)
+            .addField('Wrong Guesses', `${this.wrongs} / 6`)
 
         embed = this.client.functions.get("functions").setEmbedFooter(embed, this.client)
 
@@ -143,7 +148,7 @@ class HangManGame {
             + this.word.split("").map(l => this.guessed.includes(l.toUpperCase()) ? l : "_").join(" ")
             + "```"
 
-            return returnMsg
+        return returnMsg
     }
 }
 
