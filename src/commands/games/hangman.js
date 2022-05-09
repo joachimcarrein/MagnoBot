@@ -12,7 +12,7 @@ module.exports = {
         //convert to object we can work with
         let json = await result.json()
 
-        new HangManGame().newGame(json.word, message, client, debug)
+        new HangManGame().newGame(json.word.toLowerCase(), message, client, debug)
     }
 }
 
@@ -20,7 +20,7 @@ const letterEmojisMap = {
     "🅰️": "A", "🇦": "A", "🅱️": "B", "🇧": "B", "🇨": "C", "🇩": "D", "🇪": "E",
     "🇫": "F", "🇬": "G", "🇭": "H", "ℹ️": "I", "🇮": "I", "🇯": "J", "🇰": "K", "🇱": "L",
     "Ⓜ️": "M", "🇲": "M", "🇳": "N", "🅾️": "O", "⭕": "O", "🇴": "O", "🅿️": "P",
-    "🇵": "P", "🇶": "Q", "🇷": "R", "🇸": "S", "🇹": "T", "🇺": "U", "🇻": "V", "🇼": "W",
+    "🇵": "P", "🇶": "Q", "🇷": "R", "🇸": "S", "🇹": "T", "🇺": "U", "🇻": "V", "✅": "V", "🇼": "W",
     "✖️": "X", "❎": "X", "❌": "X", "🇽": "X", "🇾": "Y", "💤": "Z", "🇿": "Z"
 }
 
