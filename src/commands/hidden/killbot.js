@@ -7,7 +7,8 @@ module.exports = {
     usage: "",
     run: async (bot) => {
         var {  message } = bot;
-        await message.reply("Killing bot process. No recovery from this... 😵🪦")
+        const os = require("os")
+        await message.reply(`Killing bot process on \`${os.hostname()}\`. No recovery from this... 😵🪦`)
         bot.killBot()
         await message.reply("Something went wrong, bot still here...")
     }

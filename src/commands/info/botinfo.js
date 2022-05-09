@@ -1,5 +1,6 @@
 const pjson = require("../../../package.json");
 const Discord = require("discord.js")
+const os = require("os")
 
 module.exports = {
     name: "botinfo",
@@ -21,6 +22,7 @@ module.exports = {
             .addField("Created on", `${client.user.createdAt}`, true)
             .addField("On the server since:", `${botMember.joinedAt}`, true)
             .addField("Guilds Using this bot: ", `\`${client.guilds.cache.size}\``, true)
+            .addField("Server: ", `\`${os.hostname()}\``, true)
 
         botembed = client.functions.get("functions").setEmbedFooter(botembed, client)
 

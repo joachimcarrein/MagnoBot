@@ -7,7 +7,8 @@ module.exports = {
     usage: "",
     run: async (bot) => {
         var { message } = bot;
-        await message.reply(`Restarting bot`)
+        const os = require("os")
+        await message.reply(`Restarting bot on \`${os.hostname()}\``)
         bot.restart()
     }
 }
