@@ -1,20 +1,5 @@
+
 const Discord = require("discord.js")
-
-module.exports = {
-    name: "hangman",
-    aliases: ["hm"],
-    category: "games",
-    description: "Start a hangman game",
-    usage: "",
-    run: async ({ client, message, args }) => {
-        const debug = args[0] === "debug"
-        let result = await client.functions.get("functions").fetch('https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&includePartOfSpeech=noun&minCorpusCount=8000&maxCorpusCount=-1&minDictionaryCount=3&maxDictionaryCount=-1&minLength=6&maxLength=12&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5', null)
-        //convert to object we can work with
-        let json = await result.json()
-
-        new HangManGame().newGame(json.word.toLowerCase(), message, client, debug)
-    }
-}
 
 const letterEmojisMap = {
     "🅰️": "A", "🇦": "A", "🅱️": "B", "🇧": "B", "🇨": "C", "🇩": "D", "🇪": "E",
@@ -33,9 +18,10 @@ class HangManGame {
         this.client = null
         this.inGame = false
         this.debug = false
+        this.letterEmojisMap = null
     }
 
-    newGame(newWord, message, client, debug) {
+    newGame(newWord, message, client, debug, letterEmojisMap) {
         if (this.inGame) return
 
         this.word = newWord
@@ -44,6 +30,7 @@ class HangManGame {
         this.guesssed = []
         this.wrongs = 0
         this.debug = debug
+        this.letterEmojisMap = letterEmojisMap
 
         let embed = new Discord.MessageEmbed()
             .setColor("BLUE")
@@ -76,8 +63,8 @@ class HangManGame {
     }
 
     makeGuess(reaction) {
-        if (Object.keys(letterEmojisMap).includes(reaction)) {
-            const letter = letterEmojisMap[reaction];
+        if (Object.keys(this.letterEmojisMap).includes(reaction)) {
+            const letter = this.letterEmojisMap[reaction];
             if (!this.guessed.includes(letter)) {
                 this.guessed.push(letter);
 
@@ -152,4 +139,20 @@ class HangManGame {
     }
 }
 
+module.exports = {
+    name: "hangman",
+    aliases: ["hm"],
+    category: "games",
+    description: "Start a hangman game",
+    usage: "",
+    run: async ({ client, message, args }) => {
+        const debug = args[0] === "debug"
+        let result = await client.functions.get("functions").fetch('https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&includePartOfSpeech=noun&minCorpusCount=8000&maxCorpusCount=-1&minDictionaryCount=3&maxDictionaryCount=-1&minLength=6&maxLength=12&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5', null)
+        //convert to object we can work with
+        let json = await result.json()
 
+        new HangManGame().newGame(json.word.toLowerCase(), message, client, debug, letterEmojisMap)
+    },
+    letterEmojisMap,
+    HangManGame
+}
