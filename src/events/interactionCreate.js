@@ -39,7 +39,7 @@ const handleSlashCommand = async (bot, interaction) => {
         return interaction.reply("You do not have permission to run this slashcommand.")
 
     try {
-        await slashcmd.run(client, interaction)
+        await slashcmd.run({...bot, interaction})
     } catch (error) {
         console.log(error)
     }
