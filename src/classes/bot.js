@@ -67,6 +67,9 @@ class Bot {
         this.client.destroy()
         this.client = null
 
+        // delete require cache
+        Object.keys(require.cache).forEach(function(key) { delete require.cache[key] })
+
         this.eventEmitter.emit("botrestart")
     }
 }
