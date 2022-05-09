@@ -7,7 +7,6 @@ class Bot {
         //super()
 
         this.client = null
-        this.slashguilds = ["968886418883637278"]
         this.killBot
         this.start
         this.restart

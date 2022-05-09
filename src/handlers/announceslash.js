@@ -1,13 +1,9 @@
 module.exports = async (bot) => {
-    const { client, slashguilds } = bot
+    const { client } = bot
 
     console.log(`Announcing ${client.slashcommands.size} slash commands`)
-    slashguilds.forEach(slashguild => {
-        console.log(`Loading guild [${slashguild}]`)
-        const guild = client.guilds.cache.get(slashguild)
-        if (!guild)
-            console.log("Target Guild not found")
-        console.log(`*** ${guild.name}`)
+    client.guilds.cache.forEach(guild => {
+        console.log(`*** Announcing in [${guild.id}]: [${guild.name}]`)
         guild.commands.set([...client.slashcommands.values()])
     });
     console.log("Finished announcing slash command")        
