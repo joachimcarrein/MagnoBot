@@ -176,6 +176,13 @@ function computerTurn(game, currTurn) {
     return game
 }
 
+function gameOverview(game) {
+    return '\n\n' +
+        `${getEmoji(game[0])}${getEmoji(game[1])}${getEmoji(game[2])}\n` +
+        `${getEmoji(game[3])}${getEmoji(game[4])}${getEmoji(game[5])}\n` +
+        `${getEmoji(game[6])}${getEmoji(game[7])}${getEmoji(game[8])}\n`
+}
+
 module.exports = {
     name: "ttt",
     run: async (client, interaction, parameters) => {
@@ -187,19 +194,16 @@ module.exports = {
 
         let gameArr = game.split("")
         if (gameArr[currPosition - 1] === ".") {
-            gameArr[currPosition - 1] = currTurn            
+            gameArr[currPosition - 1] = currTurn
         } else { return }
         game = gameArr.join("")
 
         let returnMsg = checkReturnMsg(game, currTurn, target, false)
-        let components = buildComponents(game, currTurn, target)        
+        let components = buildComponents(game, currTurn, target)
 
         if (returnMsg.includes('wins')) {
             components = []
-            returnMsg += '\n\n'
-            returnMsg += `${getEmoji(game[0])}\t${getEmoji(game[1])}\t${getEmoji(game[2])}\n\n`
-            returnMsg += `${getEmoji(game[3])}\t${getEmoji(game[4])}\t${getEmoji(game[5])}\n\n`
-            returnMsg += `${getEmoji(game[6])}\t${getEmoji(game[7])}\t${getEmoji(game[8])}\n\n`
+            returnMsg += gameOverview(game)
         } else {
             if (target === "c") {
                 currTurn = currTurn == 'x' ? 'o' : 'x'
@@ -208,10 +212,7 @@ module.exports = {
                 components = buildComponents(game, currTurn, target)
                 if (returnMsg.includes('wins')) {
                     components = []
-                    returnMsg += '\n\n'
-                    returnMsg += `${getEmoji(game[0])}${getEmoji(game[1])}${getEmoji(game[2])}\n`
-                    returnMsg += `${getEmoji(game[3])}${getEmoji(game[4])}${getEmoji(game[5])}\n`
-                    returnMsg += `${getEmoji(game[6])}${getEmoji(game[7])}${getEmoji(game[8])}\n`
+                    returnMsg += gameOverview(game)
                 }
             }
         }
