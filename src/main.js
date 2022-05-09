@@ -9,7 +9,7 @@ const connString = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONG
 mongoose.init(connString)
 Levels.setURL(connString)
 
-const Bot = require("./bot")
+const Bot = require("./Classes/bot")
 let bot
 
 const start = ((reboot) => {

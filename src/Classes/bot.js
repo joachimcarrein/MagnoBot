@@ -43,22 +43,22 @@ class Bot {
         this.client.snipes = new Discord.Collection()
         this.client.categories = fs.readdirSync("./src/commands/");
 
-        this.client.loadEvents = (bot, reload) => require("./handlers/events")(bot, reload)
+        this.client.loadEvents = (bot, reload) => require("../handlers/events")(bot, reload)
         this.client.loadEvents(this, false)
 
-        this.client.loadCommands = (bot, reload) => require("./handlers/commands")(bot, reload)
+        this.client.loadCommands = (bot, reload) => require("../handlers/commands")(bot, reload)
         this.client.loadCommands(this, false)
 
-        this.client.loadButtons = (bot, reload) => require("./handlers/buttons")(bot, reload)
+        this.client.loadButtons = (bot, reload) => require("../handlers/buttons")(bot, reload)
         this.client.loadButtons(this, false)
 
-        this.client.loadFunctions = (bot, reload) => require(`./handlers/functions`)(bot, reload);
+        this.client.loadFunctions = (bot, reload) => require(`../handlers/functions`)(bot, reload);
         this.client.loadFunctions(this, false);
 
-        this.client.loadSlashCommands = (bot, reload) => require("./handlers/slashcommands")(bot, reload)
+        this.client.loadSlashCommands = (bot, reload) => require("../handlers/slashcommands")(bot, reload)
         this.client.loadSlashCommands(this, false)
 
-        this.client.announceSlashCommands = (bot, reload) => require("./handlers/announceslash")(bot)
+        this.client.announceSlashCommands = (bot, reload) => require("../handlers/announceslash")(bot)
 
         this.client.login(process.env.DISCORD_TOKEN)
     }
