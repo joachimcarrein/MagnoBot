@@ -19,9 +19,11 @@ module.exports = {
 
         await client.announceSlashCommands(bot)
 
+        const os = require("os")
+
         let embed = new Discord.MessageEmbed()
             .setColor("#8DC685")
-            .setTitle("Bot Reload Complete")
+            .setTitle(`Bot Reload Complete on \`${os.hostname()}\``)
             .setDescription(client.functions.get("functions").autoAlign([
                 [`\`${client.commands.size}\``, `Commands`],
                 [`\`${client.aliases.size}\``, `Aliases`],
