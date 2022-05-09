@@ -1,4 +1,4 @@
-const RockPaperScissors = require("../../Classes/rockpaperscissors")
+const RockPaperScissors = require("../../classes/rockpaperscissors")
 
 module.exports = {
     name: "rockpaperscissors",

@@ -1,4 +1,4 @@
-const HangManGame = require("../../Classes/hangmangame")
+const HangManGame = require("../../classes/hangmangame")
 
 module.exports = {
     name: "hangman",
