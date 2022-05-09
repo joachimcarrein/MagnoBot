@@ -15,7 +15,7 @@ let bot
 const start = ((reboot) => {
     bot = new Bot()
 
-    bot.eventEmitter.once("botrestart", async => {
+    bot.eventEmitter.once("botrestart", async () => {
         console.clear()
         console.log('********************************')
         console.log('Process has exited. Rebooting...')
