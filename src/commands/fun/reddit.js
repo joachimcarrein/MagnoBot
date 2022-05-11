@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js")
 
 module.exports = {
     name: "reddit",
-    aliases: [],
+    aliases: ["rd"],
     category: "fun",
     description: "Send an image of a sub reddit",
     usage: "<subreddit>",
@@ -47,7 +47,7 @@ module.exports = {
                 .setTitle(chosenOption.data.title)
                 .setDescription(chosenOption.data.author)
                 .setImage(img)
-                .addField("Information: ", "Up vote:" + chosenOption.data.ups + " / Comment: " + chosenOption.data.num_comments)
+                .addField("Information: ", "Up vote: " + chosenOption.data.ups + " / Comment: " + chosenOption.data.num_comments)
                 .setURL("https://reddit.com" + chosenOption.data.permalink)
 
             embed = client.functions.get("functions").setEmbedFooter(embed, client)
