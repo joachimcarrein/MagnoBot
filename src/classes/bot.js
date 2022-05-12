@@ -14,6 +14,8 @@ class Bot {
     }
 
     killBot = function() {
+        this.client.destroy()
+        this.client = null
         process.exit(-1)
     }
 
