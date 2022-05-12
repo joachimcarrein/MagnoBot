@@ -6,13 +6,13 @@ const keepAlive = require('./server')
 keepAlive()
 
 const connString = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@${process.env.MONGODB_URL}`
-mongoose.init(connString)
 Levels.setURL(connString)
 
 const Bot = require("./classes/bot")
 let bot
 
 const start = ((reboot) => {
+    mongoose.init(connString)
     bot = new Bot()
 
     bot.eventEmitter.once("botrestart", async () => {
