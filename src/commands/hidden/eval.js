@@ -23,6 +23,9 @@ module.exports = {
                 if (output.includes(message.client.token)) {
                     output = output.replace(message.client.token, "TOK3N"); //replaces the token 
                 }
+                if (output.includes(process.env.MONGODB_PASS)) {
+                    output = output.replace(process.env.MONGODB_PASS, "M0NG0DB_P4SS"); //replaces the password
+                }
                 message.channel.send(output.substring(0, 1900), { //cuts response message short of discord message limit of 2000 chars
                     code: "js",
                 });
