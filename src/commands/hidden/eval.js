@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const fs = require("fs")
 module.exports = {
     name: "eval",
     aliases: ["ev"],
@@ -20,12 +20,16 @@ module.exports = {
                 if (typeof output !== "string") {
                     output = require("util").inspect(output, { depth: 1 });
                 }
-                if (output.includes(message.client.token)) {
-                    output = output.replace(message.client.token, "TOK3N"); //replaces the token 
-                }
-                if (output.includes(process.env.MONGODB_PASS)) {
-                    output = output.replace(process.env.MONGODB_PASS, "M0NG0DB_P4SS"); //replaces the password
-                }
+
+                let EnvKeys = fs.readFileSync('.env').toString().split('\n')
+                EnvKeys.forEach((e, i) => {
+                    e = e.split('=')[0]
+                    output = output.replace(process.env[e], `ENV_${e}`)
+                })
+
+                output = output.replace(message.client.token, "T0K3N"); //replaces the token 
+                output = output.replace(process.env.MONGODB_PASS, "M0NG0DB_P4SS"); //replaces the password
+                          
                 message.channel.send(output.substring(0, 1900), { //cuts response message short of discord message limit of 2000 chars
                     code: "js",
                 });
