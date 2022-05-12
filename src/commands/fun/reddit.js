@@ -8,6 +8,9 @@ module.exports = {
     description: "Send an image of a sub reddit",
     usage: "<subreddit>",
     run: async ({ client, message, args }) => {
+
+        // const img = await fetchRedGifUrl(client, "https://www.redgifs.com/watch/someurl") // return direct url
+
         const subReddit = args.join(" ")
         if (!subReddit) return await message.channel.send("No subreddit supplied.")
 
@@ -57,4 +60,16 @@ module.exports = {
             return await message.channel.send("Could not fetch from reddit.")
         }
     }
+}
+
+async function fetchRedGifUrl(client, img) {
+    return client.functions.get("functions").fetch(img, null)
+        .then(res => {
+            return res.text()
+        }).then(data => {
+            const cheerio = require("cheerio")
+            const html = cheerio.load(data)
+            return html('head > meta[property="og:video"]')[0].attribs.content
+        })
+
 }
