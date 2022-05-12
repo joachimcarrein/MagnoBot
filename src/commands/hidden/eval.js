@@ -21,16 +21,18 @@ module.exports = {
                     output = require("util").inspect(output, { depth: 1 });
                 }
 
-                try {
+
+                if (fs.existsSync(".env")) {
                     let EnvKeys = fs.readFileSync('.env').toString().split('\n')
                     EnvKeys.forEach((e, i) => {
                         e = e.split('=')[0]
                         output = output.replace(process.env[e], `ENV_${e}`)
                     })
-
-                } catch (error) {
-                    console.log("no .env file")
                 }
+                // if (fs.existsSync(".cache/replit/nix/env.json")) {
+                //     let env = JSON.parse(fs.readFileSync(".cache/replit/nix/env.json"))
+                //     console.log(env)
+                // }
 
                 output = output.replace(message.client.token, "T0K3N"); //replaces the token 
                 output = output.replace(process.env.MONGODB_PASS, "M0NG0DB_P4SS"); //replaces the password

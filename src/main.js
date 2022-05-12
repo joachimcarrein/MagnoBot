@@ -11,7 +11,7 @@ Levels.setURL(connString)
 const Bot = require("./classes/bot")
 let bot
 
-const start = ((reboot) => {
+const start = ((connString, reboot) => {
     mongoose.init(connString)
     bot = new Bot()
 
@@ -20,12 +20,12 @@ const start = ((reboot) => {
         console.log('********************************')
         console.log('Process has exited. Rebooting...')
         console.log('********************************')
-        start(true)
+        start(connString, true)
     })
 
     bot.start()
 })
 
-start(false)
+start(connString, false)
 
 module.exports = bot, start
