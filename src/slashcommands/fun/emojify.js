@@ -3,10 +3,17 @@ module.exports = {
     aliases: [],
     category: "fun",
     description: "Renders your text to big emoji letters",
-    usage: "<text>",
-    run: async ({ client, message, args }) => {
-        let reaction = args.join(" ")
-        if (!reaction) return await message.reply("No text supplied")
+    options: [
+        {
+            name: "text",
+            description: "The text you want emojified",
+            type: "STRING",
+            required: true
+        },
+    ],
+    run: async ({ interaction, args }) => {
+        let reaction = interaction.options.getString("text")
+        if (!reaction) return await interaction.reply("No text supplied")
 
         const mapping = {
             ' ': '   ',
@@ -30,7 +37,6 @@ module.exports = {
             mapping[c] = mapping[c.toUpperCase()] = ` :regional_indicator_${c}:`;
         });
 
-        await message.delete()
-        await message.channel.send(reaction.split("").map(c => mapping[c] || c).join(""))
+        await interaction.reply(reaction.split("").map(c => mapping[c] || c).join(""))
     }
 }

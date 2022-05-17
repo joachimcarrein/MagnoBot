@@ -2,18 +2,18 @@ const Discord = require("discord.js")
 
 module.exports = {
     name: "8ball",
-    aliases: [],
     category: "fun",
     description: "ask a question to the 8ball",
-    usage: "",
-    run: async ({ client, message, args }) => {
+    run: async ({ client, interaction }) => {
+
+        let message
 
         let embed = new Discord.MessageEmbed()
             .setColor("BLUE")
             .setDescription(`Asking the 🎱 your question..`)
             .setFooter({ text: "Please wait..." })
 
-        answer = await message.channel.send({ embeds: [embed] })
+        answer = await interaction.reply({ embeds: [embed], fetchReply: true })
 
         await client.functions.get("functions").delay(EightBall.WaitTimes[Math.floor(Math.random() * EightBall.WaitTimes.length)]);
         const randomChoice = EightBall.Answers[Math.floor(Math.random() * EightBall.Answers.length)];

@@ -2,12 +2,19 @@ const Discord = require("discord.js")
 
 module.exports = {
     name: "choose",
-    aliases: [],
     category: "fun",
     description: "let the bot choose one of your options, separate with space, if spaces in your string, use |",
-    usage: "<option> [option] ...",
-    run: async ({ client, message, args }) => {
-        const choices = args.join(" ").split(args.includes("|") ? "|" : " ")
+    options: [
+        {
+            name: "choices",
+            description: "The choices, separate with space of |.",
+            type: "STRING",
+            required: true
+        },
+    ],
+    run: async ({ client, interaction }) => {
+        let choices = interaction.options.getString("choices")
+        choices = choices.split(choices.includes("|") ? "|" : " ")
 
         const choice = choices[Math.floor(Math.random() * choices.length)]
 
@@ -18,7 +25,7 @@ module.exports = {
 
         embed = client.functions.get("functions").setEmbedFooter(embed, client)
 
-        message.channel.send({ embeds: [embed] })
+        interaction.reply({ embeds: [embed] })
     }
 }
 

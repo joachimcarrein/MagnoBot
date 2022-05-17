@@ -3,20 +3,24 @@ const { MessageEmbed } = require("discord.js")
 
 module.exports = {
     name: "reddit",
-    aliases: ["rd"],
     category: "fun",
     description: "Send an image of a sub reddit",
-    usage: "<subreddit>",
-    run: async ({ client, message, args }) => {
+    options: [
+        {
+            name: "subreddit",
+            description: "The subreddit you want an image of.",
+            type: "STRING",
+            required: true
+        },
+    ],
+    run: async ({ client, interaction }) => {
 
         // const img = await fetchRedGifUrl(client, "https://www.redgifs.com/watch/someurl") // return direct url
-
-        const subReddit = args.join(" ")
-        if (!subReddit) return await message.channel.send("No subreddit supplied.")
-
+        const subReddit = interaction.options.getString("subreddit")
+        
         try {
             const { body } = await superagent
-                .get(`https://www.reddit.com/r/${args}.json?sort=top&t=week`)
+                .get(`https://www.reddit.com/r/${subReddit}.json?sort=top&t=week`)
                 .query({ limit: 800 });
 
             const allowedTypes = ["gif", "gifv", "png", "jpg", "jpeg", "webm", "mp4", "webp", ".svg"]
@@ -30,12 +34,12 @@ module.exports = {
                 return false;
             }
 
-            let allowed = message.channel.nsfw ? body.data.children : body.data.children.filter(post => !post.data.over_18);
+            let allowed = interaction.channel.nsfw ? body.data.children : body.data.children.filter(post => !post.data.over_18);
             allowed = allowed.filter(post => endsWithAny(allowedTypes, post.data.url, post.data.url_overridden_by_dest))
 
             let returnMsg = "No posts found with supported image types."
-            if (!message.channel.nsfw) returnMsg += " Or which are not NSFW."
-            if (!allowed.length) return message.reply(returnMsg);
+            if (!interaction.channel.nsfw) returnMsg += " Or which are not NSFW."
+            if (!allowed.length) return interaction.reply(returnMsg);
             const randomNumber = Math.floor(Math.random() * allowed.length);
             const chosenOption = allowed[randomNumber]
             let img = chosenOption.data.url_overridden_by_dest || chosenOption.data.url
@@ -55,9 +59,9 @@ module.exports = {
 
             embed = client.functions.get("functions").setEmbedFooter(embed, client)
 
-            return message.channel.send({ embeds: [embed] });
+            return interaction.reply({ embeds: [embed] });
         } catch (error) {
-            return await message.channel.send("Could not fetch from reddit.")
+            return await interaction.reply("Could not fetch from reddit.")
         }
     }
 }

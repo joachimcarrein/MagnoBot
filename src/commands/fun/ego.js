@@ -1,6 +1,5 @@
 module.exports = {
     name: "ego",
-    aliases: [],
     category: "fun",
     description: "Simple tryout of react",
     usage: "",

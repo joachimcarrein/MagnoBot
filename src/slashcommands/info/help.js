@@ -66,12 +66,12 @@ function getCMD(client, message, input) {
                 bstr = "["
                 estr = "]"
             } 
-            let choices = ""
+            let choices = ` - ${option.type}`
             if (option.choices) {
                 choices = ` (${option.choices.map(c => c.name).join(' | ')})`
             }
             parameters += `${bstr}${option.name}${estr} `
-            options += `\n${option.name}: ${option.description}${choices}`
+            options += `\n\`${option.name}\`: ${option.description}${choices}`
         })
 
         info += `\n**Usage**: /${cmd.name} ${parameters}`;

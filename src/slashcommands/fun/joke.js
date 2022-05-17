@@ -1,10 +1,8 @@
 module.exports = {
     name: "joke",
-    aliases: ["j"],
     category: "fun",
     description: "Shows a joke",
-    usage: "",
-    run: async ({ client, message, args }) => {
+    run: async ({ client, interaction }) => {
         let getJoke = async () => {
             //make API call
             let result = await client.functions.get("functions").fetch('https://v2.jokeapi.dev/joke/Any', null)
@@ -17,9 +15,9 @@ module.exports = {
 
         // have our bot reply using the data returned from our API call
         if (!joke.joke) {
-            message.reply(`${joke.setup}\n\n${joke.delivery}`)   
+            interaction.reply(`${joke.setup}\n\n${joke.delivery}`)   
         } else {
-            message.reply(joke.joke)
+            interaction.reply(joke.joke)
         }
     }
 }
