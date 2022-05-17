@@ -8,11 +8,11 @@ const run = async ({ client, interaction }) => {
         interaction.reply({ embeds: [getAll(client, interaction)] })
     }
     else {
-        interaction.reply({ embeds: [getCMD(client, interaction, command)] })
+        interaction.reply({ embeds: [getCMD(client, command)] })
     }
 }
 
-function getAll(client, message) {
+function getAll(client, interaction) {
     let embedfields = [];
     client.slashcategories.forEach(c => {
         if (c == "hidden") return;
@@ -30,7 +30,7 @@ function getAll(client, message) {
         .setColor("RANDOM")
         .setAuthor({
             name: "Bot Commands",
-            iconURL: message.guild.iconURL({ dynamic: true })
+            iconURL: client.user.displayAvatarURL()
         })
 
     embedfields.forEach(b => {
@@ -45,14 +45,14 @@ function getAll(client, message) {
 
     return em
 }
-function getCMD(client, message, input) {
+function getCMD(client, input) {
     const embed = new Discord.MessageEmbed();
     const cmd =
         client.slashcommands.get(input.toLowerCase())
     let info = `No information found for command **${input.toLowerCase()}**`;
     if (!cmd)
         //no specified command
-        return message.channel.send(embed.setColor("RED").setDescription(info));
+        return embed.setColor("RED").setDescription(info)
 
     if (cmd.name) info = `**Command name**: ${cmd.name}`;
     if (cmd.description) info += `\n**Description**: ${cmd.description}`;
@@ -68,7 +68,7 @@ function getCMD(client, message, input) {
             } 
             let choices = ` - ${option.type}`
             if (option.choices) {
-                choices = ` (${option.choices.map(c => c.name).join(' | ')})`
+                choices = ` - ${option.choices.map(c => c.name).join(' / ')}`
             }
             parameters += `${bstr}${option.name}${estr} `
             options += `\n\`${option.name}\`: ${option.description}${choices}`
