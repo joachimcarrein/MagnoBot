@@ -4,7 +4,7 @@ module.exports = {
     name: "leaderboard",
     category: "levels",
     description: 'Show the servers top 5 leaderboard',
-    run: async ({ client, interaction, args }) => {
+    run: async ({ client, interaction }) => {
         const rawLeaderboard = await Levels.fetchLeaderboard(interaction.guild.id, 5)
 
         if (rawLeaderboard.length < 1) return interaction.reply('No leaderboard yet.')

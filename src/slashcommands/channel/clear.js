@@ -14,7 +14,7 @@ module.exports = {
             required: false
         },
     ],
-    run: async ({ interaction, args }) => {
+    run: async ({ client, interaction }) => {
         let target = interaction.options.getInteger('number')
         // default deletes previous message / command itself gives no message
         let num = 1;
@@ -30,6 +30,8 @@ module.exports = {
         interaction.channel.bulkDelete(num);
 
         //notify channel of deleted messages
-        await interaction.reply({ content: `Deleted ${num} posts.`, ephemeral: true });
+        await interaction.reply({ content: `Deleted ${num} posts.\nThis message will self-destruct in 5 seconds.`, fetchReply: true });
+        await client.functions.get("functions").delay(5000)
+        await interaction.deleteReply()
     }
 }

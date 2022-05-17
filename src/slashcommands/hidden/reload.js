@@ -3,13 +3,11 @@ const fs = require("fs")
 
 module.exports = {
     name: "reload",
-    aliases: ["r"],
     category: "hidden",
     Permissions: 0,
     description: "reloads the bot",
-    usage: "",
     run: async (bot) => {
-        var { client, message, config } = bot;
+        var { client, interaction } = bot;
         await client.loadCommands(bot, true);
         await client.loadEvents(bot, true);
         await client.loadButtons(bot, true)
@@ -36,6 +34,6 @@ module.exports = {
 
         embed = client.functions.get("functions").setEmbedFooter(embed, client)
 
-        message.channel.send({ embeds: [embed] })
+        interaction.reply({ embeds: [embed] })
     }
 }

