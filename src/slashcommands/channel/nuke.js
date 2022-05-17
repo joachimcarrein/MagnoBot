@@ -1,17 +1,25 @@
 module.exports = {
     name: "nuke",
-    aliases: [],
     category: "channel",
     permissions: 10,
     description: "Clones the channel and deletes the original",
     usage: "[reason]",
-    run: async ({ client, message, args }) => {
+    options: [
+        {
+            name: "reason",
+            description: "The reason for the nuke.",
+            type: "STRING",
+            required: false
+        },
+    ],
+    run: async ({ interaction }) => {
+
         // default deletes message itself plus previous
-        let reason = args.join(" ")
+        let reason = interaction.options.getString('reason')
         if (!reason) reason = "no reason given"
 
-        const nukeChannel = message.channel
-        if (!nukeChannel.deletable) return message.reply("Cannot nuke channel.")
+        const nukeChannel = interaction.channel
+        if (!nukeChannel.deletable) return interaction.reply("Cannot nuke channel.")
 
         await nukeChannel.clone().catch(error => console.log(error))
         await nukeChannel.delete(reason).catch(error => console.log(error))
