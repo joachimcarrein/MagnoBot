@@ -21,7 +21,7 @@ module.exports = {
         const result = new Promise((resolve, reject) => resolve(eval(code)));
 
         return result
-            .then((output) => {
+            .then(async (output) => {
                 let original = output;
                 if (typeof output !== "string") {
                     output = require("util").inspect(output, { depth: 1 });
@@ -33,7 +33,7 @@ module.exports = {
                     code: "js",
                 });
             })
-            .catch((err) => {
+            .catch(async (err) => {
                 err = err.toString();
                 err = replaceHiddenString(err)
                 await interaction.reply(err, {

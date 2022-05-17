@@ -35,7 +35,7 @@ module.exports = {
             .setDiscriminator(target.discriminator);
 
         rank.build()
-            .then(data => {
+            .then(async (data) => {
                 const attachment = new Discord.MessageAttachment(data, "RankCard.png");
                 await interaction.reply({files: [attachment]});
             });
