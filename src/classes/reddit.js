@@ -1,4 +1,4 @@
-//const superagent = require("superagent");
+const superagent = require("superagent");
 const { MessageEmbed } = require("discord.js")
 
 class Reddit {
@@ -6,17 +6,13 @@ class Reddit {
     constructor() { }
 
     async getReddit(client, interaction, subReddit) {
-        // const img = await fetchRedGifUrl(client, "https://www.redgifs.com/watch/someurl") // return direct url      
-
         try {
             const { body } = await superagent
                 .get(`https://www.reddit.com/r/${subReddit}.json?sort=top&t=week`)
                 .query({ limit: 800 });
 
-            const allowedTypes = ["gif", "gifv", "png", "jpg", "jpeg", "webm", "mp4", "webp", ".svg"]
-
             let allowed = interaction.channel.nsfw ? body.data.children : body.data.children.filter(post => !post.data.over_18);
-            allowed = allowed.filter(post => this.endsWithAny(allowedTypes, post.data.url, post.data.url_overridden_by_dest))
+            allowed = allowed.filter(post => this.isAllowedType(post.data.url, post.data.url_overridden_by_dest))
 
             let returnMsg = "No posts found with supported image types."
             if (!interaction.channel.nsfw) returnMsg += " Or which are not NSFW."
@@ -26,6 +22,7 @@ class Reddit {
             let img = chosenOption.data.url_overridden_by_dest || chosenOption.data.url
 
             if (img.endsWith("gifv")) img = img.slice(0, -1)
+            if (img.includes('redgifs.com')) { img = await fetchRedGifUrl(client, img) }
 
             let embed = new MessageEmbed()
                 .setColor("PURPLE")
@@ -39,18 +36,21 @@ class Reddit {
 
             return interaction.reply({ embeds: [embed] });
         } catch (error) {
-            const {addLog} = require('../functions/logs')
+            const { addLog } = require('../functions/logs')
             addLog(error, error.stack)
             return await interaction.reply("Could not fetch from reddit.\n" + error.toString())
         }
     }
 
-    endsWithAny(suffixes, string, string2) {
+    isAllowedType(string, string2) {
+        const allowedTypes = ["gif", "gifv", "png", "jpg", "jpeg", "webm", "mp4", "webp", ".svg"]
+
         let searchString = string2 || string
-        for (let suffix of suffixes) {
+        for (let suffix of allowedTypes) {
             if (searchString.endsWith(suffix))
                 return true;
         }
+        //if (searchString.includes('redgifs.com')) return true
         return false;
     }
 }
