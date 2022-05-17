@@ -13,7 +13,11 @@ module.exports = {
     ],
     run: async ({ client, interaction }) => {
         const status = interaction.options.getString("status")
-        client.user.setPresence({ activities: [{ name: status }] });
-        await interaction.reply({content: "Bot status updated", ephemeral: true})
+        if (!status) {
+            client.user.setPresence({ activity: null })
+        } else {
+            client.user.setPresence({ activities: [{ name: status }] });
+        }
+        await interaction.reply({ content: "Bot status updated", ephemeral: true })
     }
 }
