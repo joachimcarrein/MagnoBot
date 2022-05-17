@@ -1,4 +1,3 @@
-const Discord = require("discord.js")
 module.exports = {
     name: "getlogs",
     category: "logs",
@@ -17,19 +16,11 @@ module.exports = {
         let number = interaction.options.getInteger("number")
         if (!number) number = 5
 
-        let embed = new Discord.MessageEmbed()
-            .setColor("DARK_GOLD")
-            .setTitle(`Bot Logs`)
-
         let logs = await client.functions.get("logs").getLogs(number)
         if (!logs || logs.length == 0) {
-            embed.setDescription('No bot logs present')
+            await interaction.reply('No bot logs present')
         } else {
-            embed.setDescription('Details:\n' + client.functions.get("functions").autoAlign(logs))
+            await interaction.reply('Details:\n' + logs)
         }
-
-        client.functions.get("functions").setEmbedFooter(embed, client)
-
-        await interaction.reply({ embeds: [embed] })
     }
 }
