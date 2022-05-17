@@ -20,7 +20,7 @@ module.exports = {
 
         const user = await Levels.fetch(target.id, interaction.guild.id, true); // Selects the target from the database.
 
-        if (!user) interaction.reply(`${target.username} has no level on this server.`)
+        if (!user) await interaction.reply(`${target.username} has no level on this server.`)
  
         const canvacord = require('canvacord');
 
@@ -37,7 +37,7 @@ module.exports = {
         rank.build()
             .then(data => {
                 const attachment = new Discord.MessageAttachment(data, "RankCard.png");
-                interaction.reply({files: [attachment]});
+                await interaction.reply({files: [attachment]});
             });
     }
 }

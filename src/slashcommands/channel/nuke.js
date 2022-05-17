@@ -19,7 +19,7 @@ module.exports = {
         if (!reason) reason = "no reason given"
 
         const nukeChannel = interaction.channel
-        if (!nukeChannel.deletable) return interaction.reply("Cannot nuke channel.")
+        if (!nukeChannel.deletable) return await interaction.reply("Cannot nuke channel.")
 
         await nukeChannel.clone().catch(error => {
             const addLog = require('../../functions/logs')

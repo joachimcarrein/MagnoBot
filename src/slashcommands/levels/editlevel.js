@@ -62,11 +62,11 @@ module.exports = {
 
         if (whatToUpdate == 'xp') {
             const levelUser = await Levels.fetch(mentionedMember.id, interaction.guild.id)
-            if (!levelUser) return interaction.reply(`Member not registered in the database yet.`)
+            if (!levelUser) return await interaction.reply(`Member not registered in the database yet.`)
             if (action == 'add') {
                 try {
                     await Levels.appendXp(mentionedMember.id, interaction.guild.id, value)
-                    interaction.reply(`Added ${value} xp to ${mentionedMember.username}`)
+                    await interaction.reply(`Added ${value} xp to ${mentionedMember.username}`)
                 } catch (error) {
                     const addLog = require('../../functions/logs')
                     addLog(error, error.stack)
@@ -74,7 +74,7 @@ module.exports = {
             } else if (action == 'remove') {
                 try {
                     await Levels.subtractXp(mentionedMember.id, interaction.guild.id, value)
-                    interaction.reply(`Removed ${value} xp from ${mentionedMember.username}`)
+                    await interaction.reply(`Removed ${value} xp from ${mentionedMember.username}`)
                 } catch (error) {
                     const addLog = require('../../functions/logs')
                     addLog(error, error.stack)
@@ -82,7 +82,7 @@ module.exports = {
             } else if (action == 'set') {
                 try {
                     await Levels.setXp(mentionedMember.id, interaction.guild.id, value)
-                    interaction.reply(`Set ${value} xp for ${mentionedMember.username}`)
+                    await interaction.reply(`Set ${value} xp for ${mentionedMember.username}`)
                 } catch (error) {
                     const addLog = require('../../functions/logs')
                     addLog(error, error.stack)
@@ -90,11 +90,11 @@ module.exports = {
             }
         } else if (whatToUpdate == 'level') {
             const levelUser = await Levels.fetch(mentionedMember.id, interaction.guild.id)
-            if (!levelUser) return interaction.reply(`Member not registered in the database yet.`)
+            if (!levelUser) return await interaction.reply(`Member not registered in the database yet.`)
             if (action == 'add') {
                 try {
                     await Levels.appendLevel(mentionedMember.id, interaction.guild.id, value)
-                    interaction.reply(`Added ${value} levels to ${mentionedMember.username}`)
+                    await interaction.reply(`Added ${value} levels to ${mentionedMember.username}`)
                 } catch (error) {
                     const addLog = require('../../functions/logs')
                     addLog(error, error.stack)
@@ -102,7 +102,7 @@ module.exports = {
             } else if (action == 'remove') {
                 try {
                     await Levels.subtractLevel(mentionedMember.id, interaction.guild.id, value)
-                    interaction.reply(`Removed ${value} levels from ${mentionedMember.username}`)
+                    await interaction.reply(`Removed ${value} levels from ${mentionedMember.username}`)
                 } catch (error) {
                     const addLog = require('../../functions/logs')
                     addLog(error, error.stack)
@@ -110,7 +110,7 @@ module.exports = {
             } else if (action == 'set') {
                 try {
                     await Levels.setLevel(mentionedMember.id, interaction.guild.id, value)
-                    interaction.reply(`Set ${value} levels for ${mentionedMember.username}`)
+                    await interaction.reply(`Set ${value} levels for ${mentionedMember.username}`)
                 } catch (error) {
                     const addLog = require('../../functions/logs')
                     addLog(error, error.stack)

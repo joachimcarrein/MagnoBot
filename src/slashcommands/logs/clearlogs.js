@@ -7,6 +7,6 @@ module.exports = {
 
         await client.functions.get("logs").clearLogs()
 
-        interaction.reply('Logs cleared')
+        await interaction.reply('Logs cleared')
     }
 }

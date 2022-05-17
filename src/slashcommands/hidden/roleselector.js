@@ -53,7 +53,7 @@ module.exports = {
             buttons.push(new MessageButton().setCustomId(`role-${role.id}`).setStyle("PRIMARY").setLabel(role.name))
         })
 
-        interaction.reply({
+        await interaction.reply({
             embeds: [
                 new MessageEmbed().setTitle("Select Role").setDescription("Select roles from the buttons below").setColor("BLUE")
             ],

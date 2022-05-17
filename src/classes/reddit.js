@@ -16,7 +16,7 @@ class Reddit {
 
             let returnMsg = "No posts found with supported image types."
             if (!interaction.channel.nsfw) returnMsg += " Or which are not NSFW."
-            if (!allowed.length) return interaction.reply(returnMsg);
+            if (!allowed.length) return await interaction.reply(returnMsg);
             const randomNumber = Math.floor(Math.random() * allowed.length);
             const chosenOption = allowed[randomNumber]
             let img = chosenOption.data.url_overridden_by_dest || chosenOption.data.url
@@ -34,7 +34,7 @@ class Reddit {
 
             embed = client.functions.get("functions").setEmbedFooter(embed, client)
 
-            return interaction.reply({ embeds: [embed] });
+            return await interaction.reply({ embeds: [embed] });
         } catch (error) {
             const { addLog } = require('../functions/logs')
             addLog(error, error.stack)

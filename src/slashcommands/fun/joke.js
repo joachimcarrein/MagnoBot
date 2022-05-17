@@ -15,9 +15,9 @@ module.exports = {
 
         // have our bot reply using the data returned from our API call
         if (!joke.joke) {
-            interaction.reply(`${joke.setup}\n\n${joke.delivery}`)   
+            await interaction.reply(`${joke.setup}\n\n${joke.delivery}`)   
         } else {
-            interaction.reply(joke.joke)
+            await interaction.reply(joke.joke)
         }
     }
 }

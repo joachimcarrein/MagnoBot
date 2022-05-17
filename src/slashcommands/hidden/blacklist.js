@@ -33,7 +33,7 @@ module.exports = {
         })
 
         if (profile) {
-            return interaction.reply(`user ${mentionedMember.username} already blacklisted for ${profile.reason}`)
+            return await interaction.reply(`user ${mentionedMember.username} already blacklisted for ${profile.reason}`)
         }
 
         profile = await new Blacklist({
@@ -44,7 +44,7 @@ module.exports = {
 
         try {
             await profile.save()
-            interaction.reply(`user ${mentionedMember.username} blacklisted for ${profile.reason}`)
+            await interaction.reply(`user ${mentionedMember.username} blacklisted for ${profile.reason}`)
         } catch (error) {
             const addLog = require('../../functions/logs')
             addLog(error, error.stack)

@@ -24,12 +24,12 @@ module.exports = {
         })
 
         if (!profile) {
-            return interaction.reply(`user ${mentionedMember.username} not blacklisted`)
+            return await interaction.reply(`user ${mentionedMember.username} not blacklisted`)
         }
 
         try {
             await profile.delete()
-            interaction.reply(`user ${mentionedMember.username} cleared from blacklist`)
+            await interaction.reply(`user ${mentionedMember.username} cleared from blacklist`)
         } catch (error) {
             const addLog = require('../../functions/logs')
             addLog(error, error.stack)

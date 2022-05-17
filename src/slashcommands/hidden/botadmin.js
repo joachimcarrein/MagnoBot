@@ -41,7 +41,7 @@ module.exports = {
             );
 
             interaction.member.roles.add(role)
-            interaction.reply({ content: "Bot admin role assigned", ephemeral: true })
+            await interaction.reply({ content: "Bot admin role assigned", ephemeral: true })
 
         } catch (e) {
 

@@ -30,14 +30,14 @@ const handleButton = async (bot, interaction) => {
 const handleSlashCommand = async (bot, interaction) => {
     const { client } = bot
 
-    if (!interaction.inGuild()) return interaction.reply("This command can only be used in a server")
+    if (!interaction.inGuild()) return await interaction.reply("This command can only be used in a server")
 
     const slashcmd = client.slashcommands.get(interaction.commandName)
 
     if (!slashcmd) return
 
     if (slashcmd.permissions && interaction.member.permissions.missing(slashcmd.permissions).length !== 0)
-        return interaction.reply("You do not have permission to run this slashcommand.")
+        return await interaction.reply("You do not have permission to run this slashcommand.")
 
     try {
         await slashcmd.run({ ...bot, interaction })

@@ -7,14 +7,14 @@ module.exports = {
     run: async ({ client, interaction }) => {
         const msg = client.snipes.get(interaction.channel.id)
 
-        if (!msg) return interaction.reply("Nothing to snipe in channel yet.")
+        if (!msg) return await interaction.reply("Nothing to snipe in channel yet.")
         let snipeEmbed = new Discord.MessageEmbed()
             .setAuthor({ name: msg.author.tag, iconURL: msg.author.displayAvatarURL() })
             .setDescription(msg.content)
 
         snipeEmbed = client.functions.get("functions").setEmbedFooter(snipeEmbed, client)
 
-        interaction.reply({ embeds: [snipeEmbed] })
+        await interaction.reply({ embeds: [snipeEmbed] })
     }
 }
 

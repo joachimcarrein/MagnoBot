@@ -14,6 +14,6 @@ module.exports = {
     run: async ({ client, interaction }) => {
         const status = interaction.options.getString("status")
         client.user.setPresence({ activities: [{ name: status }] });
-        interaction.reply({content: "Bot status updated", ephemeral: true})
+        await interaction.reply({content: "Bot status updated", ephemeral: true})
     }
 }

@@ -50,7 +50,7 @@ module.exports = {
 
         serverEmbed = client.functions.get("functions").setEmbedFooter(serverEmbed, client)
 
-        interaction.reply({ embeds: [serverEmbed] })
+        await interaction.reply({ embeds: [serverEmbed] })
     }
 }
 

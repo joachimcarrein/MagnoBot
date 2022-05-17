@@ -30,6 +30,6 @@ module.exports = {
 
         client.functions.get("functions").setEmbedFooter(embed, client)
 
-        interaction.reply({ embeds: [embed] })
+        await interaction.reply({ embeds: [embed] })
     }
 }

@@ -5,10 +5,10 @@ const run = async ({ client, interaction }) => {
 
     if (!command) {
         const guildSettings = await client.functions.get("functions").getGuildSettings(interaction.guild.id)
-        interaction.reply({ embeds: [getAll(client, interaction)] })
+        await interaction.reply({ embeds: [getAll(client, interaction)] })
     }
     else {
-        interaction.reply({ embeds: [getCMD(client, command)] })
+        await interaction.reply({ embeds: [getCMD(client, command)] })
     }
 }
 

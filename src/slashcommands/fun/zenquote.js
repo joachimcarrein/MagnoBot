@@ -3,7 +3,7 @@ module.exports = {
     category: "fun",
     description: "Shows a random zenquote",
     run: async ({ client, interaction }) => {
-        getQuote(client).then(quote => interaction.reply(quote))
+        getQuote(client).then(quote => await interaction.reply(quote))
     }
 }
 

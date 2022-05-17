@@ -17,7 +17,7 @@ module.exports = {
         })
 
         if (printProfile.length === 0) {
-            return interaction.reply('blacklist is empty')
+            return await interaction.reply('blacklist is empty')
         }
 
         let embed = new Discord.MessageEmbed()
@@ -27,6 +27,6 @@ module.exports = {
 
         embed = client.functions.get("functions").setEmbedFooter(embed, client)
 
-        interaction.reply({ embeds: [embed] })
+        await interaction.reply({ embeds: [embed] })
     }
 }

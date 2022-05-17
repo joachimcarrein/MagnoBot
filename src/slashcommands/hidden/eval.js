@@ -29,14 +29,14 @@ module.exports = {
 
                 output = replaceHiddenString(output)
 
-                interaction.reply(output.substring(0, 1900), { //cuts response message short of discord message limit of 2000 chars
+                await interaction.reply(output.substring(0, 1900), { //cuts response message short of discord message limit of 2000 chars
                     code: "js",
                 });
             })
             .catch((err) => {
                 err = err.toString();
                 err = replaceHiddenString(err)
-                interaction.reply(err, {
+                await interaction.reply(err, {
                     code: "js",
                 });
             });
