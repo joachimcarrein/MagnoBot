@@ -1,4 +1,4 @@
-const Log = require('../_database/models/LogSchema')
+const Log = require('../_database/models/logSchema')
 const mongoose = require('mongoose')
 
 async function addLog(content, stacktrace) {

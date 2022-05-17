@@ -13,6 +13,7 @@ let bot
 
 const start = ((reboot) => {
     mongoose.init(connString)
+    
     bot = new Bot()
 
     bot.eventEmitter.once("botrestart", async () => {
