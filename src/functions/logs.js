@@ -1,13 +1,14 @@
 const Log = require('../_database/models/LogSchema')
 const mongoose = require('mongoose')
 
-async function addLog(content) {
+async function addLog(content, stacktrace) {
     console.log(content)
     let log = await new Log({
         _id: mongoose.Types.ObjectId(),
-        content: content
+        content: content,
+        stacktrace: stacktrace
     })
-    await log.save().catch(error => console.log(error))    
+    await log.save().catch(error => console.log(error))
 }
 
 async function getLogs(number) {

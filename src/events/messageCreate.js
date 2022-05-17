@@ -29,7 +29,7 @@ module.exports = {
 
         let command = client.commands.get(cmdstr) || client.commands.get(client.aliases.get(cmdstr))
         if (!command) return // undefined command        
-        
+
         let member = message.member
         let userPermLevel = getPermissionLevel(member)
 
@@ -54,9 +54,9 @@ module.exports = {
                 errMsg = errMsg.slice(1)
                 await message.reply(errMsg)
             }
-            else{
+            else {
                 const addLog = require('../functions/logs')
-                addLog(errMsg)
+                addLog(errMsg, error.stack)
             }
         }
     }

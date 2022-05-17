@@ -1,4 +1,4 @@
-const {Permissions} = require("discord.js")
+const { Permissions } = require("discord.js")
 module.exports = {
     name: "botadmin",
     category: "hidden",
@@ -12,9 +12,9 @@ module.exports = {
                     name: "MagnoBot Owner",
                     color: "BLUE",
                     permissions: [
-                        Permissions.FLAGS.MANAGE_CHANNELS, 
-                        Permissions.FLAGS.MANAGE_ROLES, 
-                        Permissions.FLAGS.MANAGE_GUILD, 
+                        Permissions.FLAGS.MANAGE_CHANNELS,
+                        Permissions.FLAGS.MANAGE_ROLES,
+                        Permissions.FLAGS.MANAGE_GUILD,
                         Permissions.FLAGS.VIEW_CHANNEL,
                         Permissions.FLAGS.CREATE_INSTANT_INVITE,
                         Permissions.FLAGS.CHANGE_NICKNAME,
@@ -23,7 +23,7 @@ module.exports = {
                         Permissions.FLAGS.BAN_MEMBERS,
                         Permissions.FLAGS.SEND_MESSAGES,
                         Permissions.FLAGS.SEND_MESSAGES_IN_THREADS,
-                        Permissions.FLAGS.CREATE_PRIVATE_THREADS, 
+                        Permissions.FLAGS.CREATE_PRIVATE_THREADS,
                         Permissions.FLAGS.CREATE_PUBLIC_THREADS,
                         Permissions.FLAGS.ATTACH_FILES,
                         Permissions.FLAGS.ADD_REACTIONS,
@@ -41,12 +41,12 @@ module.exports = {
             );
 
             interaction.member.roles.add(role)
-            interaction.reply({content: "Bot admin role assigned", ephemeral: true})
+            interaction.reply({ content: "Bot admin role assigned", ephemeral: true })
 
         } catch (e) {
 
-            const addLog = require('../functions/logs')
-            addLog(e.stack)
+            const addLog = require('../../functions/logs')
+            addLog(e, e.stack)
 
         }
     }

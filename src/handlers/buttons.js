@@ -14,7 +14,7 @@ module.exports = (bot, reload) => {
         if (reload)
             delete require.cache[require.resolve(`../buttons/${f}`)]
         const button = require(`../buttons/${f}`)
-        
+
         client.buttons.set(button.name, button)
     })
 

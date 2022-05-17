@@ -16,7 +16,7 @@ module.exports = {
             required: true
         }
     ],
-    run: async ({interaction}) => {
+    run: async ({ interaction }) => {
         const mentionedMember = interaction.options.getUser("user")
 
         let profile = await Blacklist.findOne({
@@ -31,8 +31,8 @@ module.exports = {
             await profile.delete()
             interaction.reply(`user ${mentionedMember.username} cleared from blacklist`)
         } catch (error) {
-            const addLog = require('../functions/logs')
-            addLog(error)
+            const addLog = require('../../functions/logs')
+            addLog(error, error.stack)
         }
     }
 }

@@ -1,13 +1,13 @@
-const superagent = require("superagent");
+//const superagent = require("superagent");
 const { MessageEmbed } = require("discord.js")
 
 class Reddit {
 
-    constructor() {}
+    constructor() { }
 
     async getReddit(client, interaction, subReddit) {
         // const img = await fetchRedGifUrl(client, "https://www.redgifs.com/watch/someurl") // return direct url      
-        
+
         try {
             const { body } = await superagent
                 .get(`https://www.reddit.com/r/${subReddit}.json?sort=top&t=week`)
@@ -39,6 +39,8 @@ class Reddit {
 
             return interaction.reply({ embeds: [embed] });
         } catch (error) {
+            const {addLog} = require('../functions/logs')
+            addLog(error, error.stack)
             return await interaction.reply("Could not fetch from reddit.\n" + error.toString())
         }
     }

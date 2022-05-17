@@ -71,8 +71,8 @@ async function getGuildSettings(guildID) {
             guildID: guildID
         })
         await guildSettings.save().catch(error => {
-            const addLog = require('../functions/logs')
-            addLog(error)
+            const addLog = require('./logs')
+            addLog(error, error.stack)
         })
     }
 

@@ -23,14 +23,14 @@ module.exports = {
         },
     ],
     run: async (bot) => {
-        var {  interaction } = bot;
-        
+        var { interaction } = bot;
+
         const mentionedMember = interaction.options.getUser("user")
         let reason = interaction.options.getString("reason")
 
         let profile = await Blacklist.findOne({
             userID: mentionedMember.id
-        })        
+        })
 
         if (profile) {
             return interaction.reply(`user ${mentionedMember.username} already blacklisted for ${profile.reason}`)
@@ -46,8 +46,8 @@ module.exports = {
             await profile.save()
             interaction.reply(`user ${mentionedMember.username} blacklisted for ${profile.reason}`)
         } catch (error) {
-            const addLog = require('../functions/logs')
-            addLog(error)
+            const addLog = require('../../functions/logs')
+            addLog(error, error.stack)
         }
     }
 }
