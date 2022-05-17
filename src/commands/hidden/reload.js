@@ -16,6 +16,7 @@ module.exports = {
         await client.loadSlashCommands(bot, true)
         await client.loadFunctions(bot, true);
         client.categories = fs.readdirSync("./src/commands/");
+        client.slashcategories = fs.readdirSync("./src/slashcommands/");
 
         await client.announceSlashCommands(bot)
 

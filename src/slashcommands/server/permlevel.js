@@ -2,12 +2,10 @@ const { getPermissionLevel, getPermissionName } = require("../../handlers/permis
 
 module.exports = {
     name: "permlevel",
-    aliases: [],
     category: "server",
     description: "Show your permission level within this server",
-    usage: "",
-    run: async ({ client, message, args }) => {
-        message.reply(`Your permission level is \`${getPermissionName(getPermissionLevel(message.member))}\``)
+    run: async ({ interaction }) => {
+        interaction.reply(`Your permission level is \`${getPermissionName(getPermissionLevel(interaction.member))}\``)
     }
 }
 

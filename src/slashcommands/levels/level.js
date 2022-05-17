@@ -2,16 +2,25 @@ const Levels = require('discord-xp')
 const Discord = require("discord.js")
 module.exports = {
     name: "level",
-    aliases: [],
     category: "levels",
     description: 'Show the level of a user',
-    usage: "[user]",
-    run: async ({ client, message, args }) => {
-        const target = message.mentions.users.first() || message.author; // Grab the target.
+    options: [
+        {
+            name: "user",
+            description: "The user you want the level of.",
+            type: "USER",
+            required: false
+        },
+    ],
+    run: async ({ interaction }) => {
+        let target = interaction.options.getUser('user')
+        if (!target) {
+            target = interaction.user
+        }
 
-        const user = await Levels.fetch(target.id, message.guild.id, true); // Selects the target from the database.
+        const user = await Levels.fetch(target.id, interaction.guild.id, true); // Selects the target from the database.
 
-        if (!user) message.reply(`${target.username} has no level on this server.`)
+        if (!user) interaction.reply(`${target.username} has no level on this server.`)
  
         const canvacord = require('canvacord');
 
@@ -28,7 +37,7 @@ module.exports = {
         rank.build()
             .then(data => {
                 const attachment = new Discord.MessageAttachment(data, "RankCard.png");
-                message.channel.send({files: [attachment]});
+                interaction.reply({files: [attachment]});
             });
     }
 }

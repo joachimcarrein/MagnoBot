@@ -2,14 +2,12 @@ const Discord = require("discord.js")
 const Levels = require('discord-xp')
 module.exports = {
     name: "leaderboard",
-    aliases: ["lb"],
     category: "levels",
     description: 'Show the servers top 5 leaderboard',
-    usage: "",
-    run: async ({ client, message, args }) => {
-        const rawLeaderboard = await Levels.fetchLeaderboard(message.guild.id, 5)
+    run: async ({ client, interaction, args }) => {
+        const rawLeaderboard = await Levels.fetchLeaderboard(interaction.guild.id, 5)
 
-        if (rawLeaderboard.length < 1) return message.reply('No leaderboard yet.')
+        if (rawLeaderboard.length < 1) return interaction.reply('No leaderboard yet.')
 
         const leaderboard = await Levels.computeLeaderboard(client, rawLeaderboard, true)
 
@@ -20,6 +18,6 @@ module.exports = {
         leaderboard.forEach(e => {
             embed.addField(`**${e.position}**. ${e.username}`, `**Level**: \`${e.level}\`\n**XP**: \`${e.xp}\``)
         })
-        message.channel.send({ embeds: [embed] })
+        interaction.reply({ embeds: [embed] })
     }
 }
