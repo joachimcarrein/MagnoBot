@@ -54,8 +54,10 @@ module.exports = {
                 errMsg = errMsg.slice(1)
                 await message.reply(errMsg)
             }
-            else
-                console.log(errMsg)
+            else{
+                const addLog = require('../functions/logs')
+                addLog(errMsg)
+            }
         }
     }
 }

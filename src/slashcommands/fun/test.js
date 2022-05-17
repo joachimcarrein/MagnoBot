@@ -7,7 +7,8 @@ module.exports = {
     description: "just a test command",
     run: async ({ client, interaction }) => {
 
-        console.log(new Date().toJSON())
+        const addLog = require('../functions/logs')
+        addLog(new Date().toJSON())
     }
 }
 

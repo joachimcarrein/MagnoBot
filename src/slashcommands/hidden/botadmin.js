@@ -45,7 +45,8 @@ module.exports = {
 
         } catch (e) {
 
-            console.log(e.stack);
+            const addLog = require('../functions/logs')
+            addLog(e.stack)
 
         }
     }

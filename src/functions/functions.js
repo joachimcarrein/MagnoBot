@@ -70,12 +70,14 @@ async function getGuildSettings(guildID) {
             _id: mongoose.Types.ObjectId(),
             guildID: guildID
         })
-        await guildSettings.save().catch(error => console.log(error))
+        await guildSettings.save().catch(error => {
+            const addLog = require('../functions/logs')
+            addLog(error)
+        })
     }
 
     return guildSettings
 }
-
 
 module.exports = {
     name: "functions",

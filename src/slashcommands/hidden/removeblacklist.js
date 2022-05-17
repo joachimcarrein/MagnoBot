@@ -31,7 +31,8 @@ module.exports = {
             await profile.delete()
             interaction.reply(`user ${mentionedMember.username} cleared from blacklist`)
         } catch (error) {
-            console.log(error)
+            const addLog = require('../functions/logs')
+            addLog(error)
         }
     }
 }

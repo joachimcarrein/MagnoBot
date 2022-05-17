@@ -25,10 +25,7 @@ class Reddit {
             const chosenOption = allowed[randomNumber]
             let img = chosenOption.data.url_overridden_by_dest || chosenOption.data.url
 
-            //console.log(img)
-
             if (img.endsWith("gifv")) img = img.slice(0, -1)
-            //console.log(img)
 
             let embed = new MessageEmbed()
                 .setColor("PURPLE")

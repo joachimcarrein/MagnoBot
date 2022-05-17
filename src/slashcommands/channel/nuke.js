@@ -21,7 +21,13 @@ module.exports = {
         const nukeChannel = interaction.channel
         if (!nukeChannel.deletable) return interaction.reply("Cannot nuke channel.")
 
-        await nukeChannel.clone().catch(error => console.log(error))
-        await nukeChannel.delete(reason).catch(error => console.log(error))
+        await nukeChannel.clone().catch(error => {
+            const addLog = require('../functions/logs')
+            addLog(error)
+        })
+        await nukeChannel.delete(reason).catch(error => {
+            const addLog = require('../functions/logs')
+            addLog(error)
+        })
     }
 }

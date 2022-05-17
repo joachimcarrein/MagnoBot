@@ -22,7 +22,8 @@ const handleButton = async (bot, interaction) => {
     try {
         await button.run(client, interaction, params)
     } catch (error) {
-        console.log(error)
+        const addLog = require('../functions/logs')
+        addLog(error)
     }
 }
 
@@ -41,6 +42,7 @@ const handleSlashCommand = async (bot, interaction) => {
     try {
         await slashcmd.run({...bot, interaction})
     } catch (error) {
-        console.log(error)
+        const addLog = require('../functions/logs')
+        addLog(error)
     }
 }

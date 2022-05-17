@@ -46,7 +46,8 @@ module.exports = {
             await profile.save()
             interaction.reply(`user ${mentionedMember.username} blacklisted for ${profile.reason}`)
         } catch (error) {
-            console.log(error)
+            const addLog = require('../functions/logs')
+            addLog(error)
         }
     }
 }

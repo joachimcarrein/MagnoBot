@@ -32,7 +32,8 @@ function triggerEventHandler(bot, event, ...args) {
         else
             throw new Error(`Event ${event} does not exist`)
     } catch (error) {
-        console.log(error)
+        const addLog = require('../functions/logs')
+        addLog(error)
     }
 }
 

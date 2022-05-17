@@ -68,21 +68,24 @@ module.exports = {
                     await Levels.appendXp(mentionedMember.id, interaction.guild.id, value)
                     interaction.reply(`Added ${value} xp to ${mentionedMember.username}`)
                 } catch (error) {
-                    console.log(error)
+                    const addLog = require('../functions/logs')
+                    addLog(error)
                 }
             } else if (action == 'remove') {
                 try {
                     await Levels.subtractXp(mentionedMember.id, interaction.guild.id, value)
                     interaction.reply(`Removed ${value} xp from ${mentionedMember.username}`)
                 } catch (error) {
-                    console.log(error)
+                    const addLog = require('../functions/logs')
+                    addLog(error)
                 }
             } else if (action == 'set') {                
                 try {
                     await Levels.setXp(mentionedMember.id, interaction.guild.id, value)
                     interaction.reply(`Set ${value} xp for ${mentionedMember.username}`)
                 } catch (error) {
-                    console.log(error)
+                    const addLog = require('../functions/logs')
+                    addLog(error)
                 }
             }
         } else if (whatToUpdate == 'level') {
@@ -93,21 +96,24 @@ module.exports = {
                     await Levels.appendLevel(mentionedMember.id, interaction.guild.id, value)
                     interaction.reply(`Added ${value} levels to ${mentionedMember.username}`)
                 } catch (error) {
-                    console.log(error)
+                    const addLog = require('../functions/logs')
+                    addLog(error)
                 }
             } else if (action == 'remove') {
                 try {
                     await Levels.subtractLevel(mentionedMember.id, interaction.guild.id, value)
                     interaction.reply(`Removed ${value} levels from ${mentionedMember.username}`)
                 } catch (error) {
-                    console.log(error)
+                    const addLog = require('../functions/logs')
+                    addLog(error)
                 }
             } else if (action == 'set') {                
                 try {
                     await Levels.setLevel(mentionedMember.id, interaction.guild.id, value)
                     interaction.reply(`Set ${value} levels for ${mentionedMember.username}`)
                 } catch (error) {
-                    console.log(error)
+                    const addLog = require('../functions/logs')
+                    addLog(error)
                 }
             }
         }
