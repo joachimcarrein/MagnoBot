@@ -3,11 +3,9 @@ const fs = require('fs')
 
 module.exports = {
     name: "test",
-    aliases: [],
     category: "fun",
     description: "just a test command",
-    usage: "",
-    run: async ({ client, message, args }) => {
+    run: async ({ client, interaction }) => {
 
         let EnvKeys = fs.readFileSync('.env').toString().split('\n')
         EnvKeys.forEach((e, i) => {
@@ -20,7 +18,7 @@ module.exports = {
 
         embed = client.functions.get("functions").setEmbedFooter(embed, client)
 
-        return message.channel.send({ embeds: [embed] });
+        return interaction.reply({ embeds: [embed] });
     }
 }
 

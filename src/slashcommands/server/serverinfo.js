@@ -1,6 +1,6 @@
 const Discord = require("discord.js")
 module.exports = {
-    name: "server",
+    name: "serverinfo",
     category: "server",
     description: "Show server info",
     options: [

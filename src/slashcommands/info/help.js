@@ -34,7 +34,7 @@ function getAll(client, message) {
         })
 
     embedfields.forEach(b => {
-        em.addField(b[0], b[1], true);
+        em.addField(b[0], b[1]);
     });
 
     em.setFooter({
