@@ -17,7 +17,7 @@ module.exports = {
         if (!target) {
             target = interaction.member
         }
-        interaction.reply(`Your permission level is \`${getPermissionName(getPermissionLevel(target))}\``)
+        interaction.reply(`\`${target.user.username}\` is \`${getPermissionName(getPermissionLevel(target))}\``)
     }
 }
 
