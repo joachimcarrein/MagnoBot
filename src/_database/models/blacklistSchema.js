@@ -6,4 +6,4 @@ const blacklistSchema = new mongoose.Schema({
     reason: String
 }, { timestamps: true })
 
-module.exports = new mongoose.model('BlackList',blacklistSchema, 'blacklists')
+module.exports = new mongoose.model('BlackList', blacklistSchema, 'blacklists')

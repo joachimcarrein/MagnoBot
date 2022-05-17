@@ -7,18 +7,7 @@ module.exports = {
     description: "just a test command",
     run: async ({ client, interaction }) => {
 
-        let EnvKeys = fs.readFileSync('.env').toString().split('\n')
-        EnvKeys.forEach((e, i) => {
-            e = e.split('=')[0]
-            EnvKeys.splice(i, 1, e)
-        })
-
-        let embed = new MessageEmbed()
-            .setDescription(`data: ${EnvKeys}`)
-
-        embed = client.functions.get("functions").setEmbedFooter(embed, client)
-
-        return interaction.reply({ embeds: [embed] });
+        console.log(new Date().toJSON())
     }
 }
 

@@ -32,6 +32,10 @@ module.exports = {
         //notify channel of deleted messages
         await interaction.reply({ content: `Deleted ${num} posts.\nThis message will self-destruct in 5 seconds.`, fetchReply: true });
         await client.functions.get("functions").delay(5000)
-        await interaction.deleteReply()
+        try {
+            await interaction.deleteReply()  
+        } catch (error) {
+            console.log("Message already gone probably")
+        }  
     }
 }
