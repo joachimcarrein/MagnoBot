@@ -1,6 +1,7 @@
 const Discord = require("discord.js")
 const Blacklist = require('../_database/models/blacklistSchema')
 const Levels = require('discord-xp')
+const addLog = require('../functions/logs')
 
 const { getPermissionLevel, getPermissionName } = require("../handlers/permissions")
 
@@ -54,8 +55,7 @@ module.exports = {
                 errMsg = errMsg.slice(1)
                 await message.reply(errMsg)
             }
-            else {
-                const addLog = require('../functions/logs')
+            else {                
                 addLog(errMsg, error.stack)
             }
         }

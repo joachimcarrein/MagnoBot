@@ -1,3 +1,5 @@
+const addLog = require('../../functions/logs')
+
 module.exports = {
     name: "nuke",
     category: "channel",
@@ -21,12 +23,10 @@ module.exports = {
         const nukeChannel = interaction.channel
         if (!nukeChannel.deletable) return await interaction.reply("Cannot nuke channel.")
 
-        await nukeChannel.clone().catch(error => {
-            const addLog = require('../../functions/logs')
+        await nukeChannel.clone().catch(error => {            
             addLog(error, error.stack)
         })
         await nukeChannel.delete(reason).catch(error => {
-            const addLog = require('../../functions/logs')
             addLog(error, error.stack)
         })
     }

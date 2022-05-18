@@ -1,4 +1,4 @@
-const Discord = require("discord.js")
+const addLog = require('../functions/logs')
 
 module.exports = {
     name: "interactionCreate",
@@ -21,8 +21,7 @@ const handleButton = async (bot, interaction) => {
     if (!button) return
     try {
         await button.run(client, interaction, params)
-    } catch (error) {
-        const addLog = require('../functions/logs')
+    } catch (error) {        
         addLog(error, error.stack)
     }
 }
@@ -42,7 +41,6 @@ const handleSlashCommand = async (bot, interaction) => {
     try {
         await slashcmd.run({ ...bot, interaction })
     } catch (error) {
-        const { addLog } = require('../functions/logs')
         addLog(error, error.stack)
     }
 }

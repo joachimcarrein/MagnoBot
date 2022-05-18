@@ -4,7 +4,6 @@ const run = async ({ client, interaction }) => {
     let command = interaction.options.getString("command")
 
     if (!command) {
-        const guildSettings = await client.functions.get("functions").getGuildSettings(interaction.guild.id)
         await interaction.reply({ embeds: [getAll(client, interaction)] })
     }
     else {

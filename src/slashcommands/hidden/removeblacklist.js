@@ -1,7 +1,5 @@
-const Discord = require("discord.js")
-const fs = require("fs")
-const mongoose = require('mongoose')
 const Blacklist = require('../../_database/models/blacklistSchema')
+const addLog = require('../../functions/logs')
 
 module.exports = {
     name: "removeblacklist",
@@ -30,8 +28,7 @@ module.exports = {
         try {
             await profile.delete()
             await interaction.reply(`user ${mentionedMember.username} cleared from blacklist`)
-        } catch (error) {
-            const addLog = require('../../functions/logs')
+        } catch (error) {            
             addLog(error, error.stack)
         }
     }

@@ -62,16 +62,24 @@ function formatTime(time) {
 
 const Guild = require('../_database/models/guildSchema')
 const mongoose = require('mongoose')
+const addLog = require('./logs')
 
 async function getGuildSettings(guildID) {
-    let guildSettings = await Guild.findOne({ guildID: guildID })
-    if (!guildSettings) {
-        guildSettings = await new Guild({
+    let guildSettings
+    let newSettings
+    try {
+        newSettings = await new Guild({
             _id: mongoose.Types.ObjectId(),
             guildID: guildID
         })
+        guildSettings = await Guild.findOne({ guildID: guildID })
+    } catch (error) {
+        addLog(error, error.stack)
+        return newSettings
+    }
+    if (!guildSettings) {
+        guildSettings = newSettings
         await guildSettings.save().catch(error => {
-            const addLog = require('./logs')
             addLog(error, error.stack)
         })
     }

@@ -1,5 +1,6 @@
 const superagent = require("superagent");
 const { MessageEmbed } = require("discord.js")
+const { addLog } = require('../functions/logs')
 
 class Reddit {
 
@@ -35,8 +36,7 @@ class Reddit {
             embed = client.functions.get("functions").setEmbedFooter(embed, client)
 
             return await interaction.reply({ embeds: [embed] });
-        } catch (error) {
-            const { addLog } = require('../functions/logs')
+        } catch (error) {            
             addLog(error, error.stack)
             return await interaction.reply("Could not fetch from reddit.\n" + error.toString())
         }
