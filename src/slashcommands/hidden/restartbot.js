@@ -22,7 +22,11 @@ module.exports = {
         }
 
         if (restartBot) {
-            await interaction.reply(`Restarting bot on \`${os.hostname()}\``)
+            try {
+                await interaction.reply(`Restarting bot on \`${os.hostname()}\``)
+            } catch (error) {
+                
+            }
             bot.restart()
         } else {
             await interaction.reply(`bot is not \`${request}\` but \`${os.hostname()}\`, skipping restart.`)

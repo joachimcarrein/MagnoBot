@@ -23,7 +23,11 @@ module.exports = {
         }
 
         if (killBot) {
-            await interaction.reply(`Killing bot process on \`${os.hostname()}\`. No recovery from this... 😵🪦`)
+            try {
+                await interaction.reply(`Killing bot process on \`${os.hostname()}\`. No recovery from this... 😵🪦`)
+            } catch (error) {
+                
+            }
             bot.killBot()
             await interaction.reply("Something went wrong, bot still here...")
         } else {
