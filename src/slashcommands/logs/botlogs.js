@@ -1,5 +1,5 @@
 module.exports = {
-    name: "getlogs",
+    name: "botlogs",
     category: "logs",
     permissions: -1,
     description: 'Get the bot logs',
