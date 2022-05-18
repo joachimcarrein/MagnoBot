@@ -11,7 +11,7 @@ const fetch = (url) => import('node-fetch').then(({ default: fetch }) => fetch(u
 function setEmbedFooter(embed, client) {
     const os = require("os")
     embed.setTimestamp()
-        .setFooter({ text: `${client.user.username} \`(${os.hostname()})\``, iconURL: client.user.displayAvatarURL() })
+        .setFooter({ text: `${client.user.username} (${os.hostname()})`, iconURL: client.user.displayAvatarURL() })
 
     return embed
 }
