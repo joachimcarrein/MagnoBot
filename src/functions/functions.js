@@ -62,7 +62,7 @@ function formatTime(time) {
 
 const Guild = require('../_database/models/guildSchema')
 const mongoose = require('mongoose')
-const addLog = require('./logs')
+const { addLog } = require('./logs')
 
 async function getGuildSettings(guildID) {
     let guildSettings

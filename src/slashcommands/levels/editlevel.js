@@ -1,5 +1,5 @@
 const Levels = require('discord-xp')
-const addLog = require('../../functions/logs')
+const { addLog } = require('../../functions/logs')
 
 module.exports = {
     name: "editlevel",
@@ -69,7 +69,7 @@ module.exports = {
                 try {
                     await Levels.appendXp(mentionedMember.id, interaction.guild.id, value)
                     await interaction.reply(`Added ${value} xp to ${mentionedMember.username}`)
-                } catch (error) {                    
+                } catch (error) {
                     addLog(error, error.stack)
                 }
             } else if (action == 'remove') {

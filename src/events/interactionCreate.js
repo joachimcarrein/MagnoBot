@@ -1,4 +1,4 @@
-const addLog = require('../functions/logs')
+const { addLog } = require('../functions/logs')
 
 module.exports = {
     name: "interactionCreate",
@@ -21,7 +21,7 @@ const handleButton = async (bot, interaction) => {
     if (!button) return
     try {
         await button.run(client, interaction, params)
-    } catch (error) {        
+    } catch (error) {
         addLog(error, error.stack)
     }
 }

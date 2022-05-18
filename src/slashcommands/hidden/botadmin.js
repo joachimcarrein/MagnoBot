@@ -1,5 +1,5 @@
 const { Permissions } = require("discord.js")
-const addLog = require('../../functions/logs')
+const { addLog } = require('../../functions/logs')
 
 module.exports = {
     name: "botadmin",
@@ -45,7 +45,7 @@ module.exports = {
             interaction.member.roles.add(role)
             await interaction.reply({ content: "Bot admin role assigned", ephemeral: true })
 
-        } catch (e) {            
+        } catch (e) {
             addLog(e, e.stack)
         }
     }

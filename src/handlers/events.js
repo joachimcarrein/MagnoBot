@@ -1,5 +1,5 @@
 const { getFiles } = require("../functions/functions")
-const addLog = require('../functions/logs')
+const { addLog } = require('../functions/logs')
 
 module.exports = (bot, reload) => {
     const { client } = bot
@@ -32,7 +32,7 @@ function triggerEventHandler(bot, event, ...args) {
             client.events.get(event).run(bot, ...args)
         else
             throw new Error(`Event ${event} does not exist`)
-    } catch (error) {        
+    } catch (error) {
         addLog(error, error.stack)
     }
 }

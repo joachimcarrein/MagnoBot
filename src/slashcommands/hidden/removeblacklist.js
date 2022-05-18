@@ -1,5 +1,5 @@
 const Blacklist = require('../../_database/models/blacklistSchema')
-const addLog = require('../../functions/logs')
+const { addLog } = require('../../functions/logs')
 
 module.exports = {
     name: "removeblacklist",
@@ -28,7 +28,7 @@ module.exports = {
         try {
             await profile.delete()
             await interaction.reply(`user ${mentionedMember.username} cleared from blacklist`)
-        } catch (error) {            
+        } catch (error) {
             addLog(error, error.stack)
         }
     }

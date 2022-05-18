@@ -1,7 +1,6 @@
-const Discord = require("discord.js")
-const fs = require("fs")
 const mongoose = require('mongoose')
 const Blacklist = require('../../_database/models/blacklistSchema')
+const { addLog } = require('../../functions/logs')
 
 module.exports = {
     name: "blacklist",
@@ -46,7 +45,6 @@ module.exports = {
             await profile.save()
             await interaction.reply(`user ${mentionedMember.username} blacklisted for ${profile.reason}`)
         } catch (error) {
-            const addLog = require('../../functions/logs')
             addLog(error, error.stack)
         }
     }
