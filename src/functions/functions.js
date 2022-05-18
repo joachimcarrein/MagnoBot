@@ -9,8 +9,9 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 const fetch = (url) => import('node-fetch').then(({ default: fetch }) => fetch(url));
 
 function setEmbedFooter(embed, client) {
+    const os = require("os")
     embed.setTimestamp()
-        .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
+        .setFooter({ text: `${client.user.username} \`(${os.hostname()})\``, iconURL: client.user.displayAvatarURL() })
 
     return embed
 }
