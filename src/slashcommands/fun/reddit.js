@@ -15,7 +15,7 @@ module.exports = {
 
         const subReddit = interaction.options.getString("subreddit")
 
-        new Reddit().getReddit(client, interaction, subReddit)
+        await new Reddit().getReddit(client, interaction, subReddit)
         
     }
 }

@@ -8,6 +8,6 @@ module.exports = {
 
         const subReddit = args.join(" ")
 
-        new Reddit().getReddit(client, message, subReddit)
+        await new Reddit().getReddit(client, message, subReddit)
     }
 }

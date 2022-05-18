@@ -27,9 +27,9 @@ class Reddit {
             let embed = new MessageEmbed()
                 .setColor("PURPLE")
                 .setTitle(chosenOption.data.title)
-                .setDescription(chosenOption.data.author)
+                .setDescription(chosenOption.data.subreddit_name_prefixed + ' - ' + chosenOption.data.author)
                 .setImage(img)
-                .addField("Information: ", "Up vote: " + chosenOption.data.ups + " / Comment: " + chosenOption.data.num_comments)
+                .addField("Information: ", "Upvotes: " + chosenOption.data.ups + " / Comments: " + chosenOption.data.num_comments)
                 .setURL("https://reddit.com" + chosenOption.data.permalink)
 
             embed = client.functions.get("functions").setEmbedFooter(embed, client)
