@@ -5,7 +5,7 @@ module.exports = {
     name: "botadmin",
     category: "hidden",
     permissions: -1,
-    description: 'Make bot owner admin.',
+    description: 'Show bot admin.',
     run: async ({ interaction }) => {
         try {
 
