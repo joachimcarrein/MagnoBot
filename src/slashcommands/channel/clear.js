@@ -15,15 +15,16 @@ module.exports = {
     ],
     run: async ({ client, interaction }) => {
         let target = interaction.options.getInteger('number')
+        
+        await interaction.deferReply()
+
         // default deletes previous message / command itself gives no message
         let num = 1;
 
         //if argument is provided, we need to convert it from string to number
         if (!!target) {
             num = target
-        }
-
-        await interaction.deferReply();
+        }        
 
         todo = num
 
@@ -37,12 +38,12 @@ module.exports = {
         await interaction.channel.bulkDelete(todo);
 
         //notify channel of deleted messages
-        await interaction.editReply(`Deleted ${num} posts.\nThis message will self-destruct in 5 seconds`);
+        msg = await interaction.channel.send(`Deleted ${num} posts.\nThis message will self-destruct in 5 seconds.`);
         await client.functions.get("functions").delay(5000)
         try {
-            await interaction.deleteReply()  
+            await msg.delete();
         } catch (error) {
             console.log("Message already gone probably")
-        }  
+        }
     }
 }
