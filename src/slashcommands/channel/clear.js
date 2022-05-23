@@ -10,7 +10,6 @@ module.exports = {
             description: "The number of messages you want cleared",
             type: "INTEGER",
             minValue: 1,
-            maxValue: 100,
             required: false
         },
     ],
