@@ -11,8 +11,9 @@ Levels.setURL(connString)
 const Bot = require("./classes/bot")
 let bot
 
+mongoose.init(connString)
+
 const start = ((reboot) => {
-    mongoose.init(connString)
     
     bot = new Bot()
 
