@@ -24,14 +24,16 @@ module.exports = {
             num = target
         }
 
-        while (num > 100) {
+        todo = num
+
+        while (todo > 100) {
             interaction.channel.bulkDelete(100);
             await client.functions.get("functions").delay(500)
-            num -= 100
+            todo -= 100
         }
 
         //bulk delete the messages
-        interaction.channel.bulkDelete(num);
+        interaction.channel.bulkDelete(todo);
 
         //notify channel of deleted messages
         await interaction.reply({ content: `Deleted ${num} posts.\nThis message will self-destruct in 5 seconds.`, fetchReply: true });
