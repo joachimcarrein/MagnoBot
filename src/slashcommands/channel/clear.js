@@ -24,7 +24,11 @@ module.exports = {
             num = target
         }
 
-        if (num > 100) num = 100
+        while (num > 100) {
+            interaction.channel.bulkDelete(100);
+            await client.functions.get("functions").delay(500)
+            num -= 100
+        }
 
         //bulk delete the messages
         interaction.channel.bulkDelete(num);
