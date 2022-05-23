@@ -6,6 +6,6 @@ module.exports = {
     run: async ({ message }) => {
         const os = require("os")
 
-        await interaction.channel.send(`online on \`${os.hostname()}\``)
+        await message.channel.send(`online on \`${os.hostname()}\``)
     }
 }
