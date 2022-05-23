@@ -28,13 +28,13 @@ module.exports = {
         todo = num
 
         while (todo > 100) {
-            interaction.channel.bulkDelete(100);
+            await interaction.channel.bulkDelete(100);
             await client.functions.get("functions").delay(500)
             todo -= 100
         }
 
         //bulk delete the messages
-        interaction.channel.bulkDelete(todo);
+        await interaction.channel.bulkDelete(todo);
 
         //notify channel of deleted messages
         await interaction.editReply(`Deleted ${num} posts.\nThis message will self-destruct in 5 seconds`);
