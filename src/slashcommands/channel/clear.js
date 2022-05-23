@@ -37,7 +37,7 @@ module.exports = {
         interaction.channel.bulkDelete(todo);
 
         //notify channel of deleted messages
-        await interaction.editReply({ content: `Deleted ${num} posts.\nThis message will self-destruct in 5 seconds.`, fetchReply: true });
+        await interaction.editReply(`Deleted ${num} posts.\nThis message will self-destruct in 5 seconds`);
         await client.functions.get("functions").delay(5000)
         try {
             await interaction.deleteReply()  
