@@ -13,7 +13,7 @@ module.exports = {
         },
     ],
     run: async (bot) => {
-        let { interaction } = bot
+        let { client, interaction } = bot
         let message
 
         var code = interaction.options.getString("script")
