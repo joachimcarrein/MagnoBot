@@ -25,7 +25,7 @@ class HangManGame {
         this.word = newWord
         this.client = client
         this.inGame = true
-        this.guesssed = []
+        this.guessed = []
         this.wrongs = 0
         this.debug = debug
 
