@@ -1,4 +1,5 @@
 const { addLog } = require('../functions/logs')
+const { getPermissionLevel } = require("../handlers/permissions")
 
 module.exports = {
     name: "interactionCreate",
@@ -35,12 +36,34 @@ const handleSlashCommand = async (bot, interaction) => {
 
     if (!slashcmd) return
 
-    if (slashcmd.permissions && interaction.member.permissions.missing(slashcmd.permissions).length !== 0)
+    let member = interaction.member
+    let userPermLevel = getPermissionLevel(member)
+
+    if (slashcmd.permissions !== undefined && userPermLevel > slashcmd.permissions) {
         return await interaction.reply("You do not have permission to run this slashcommand.")
+    }
 
     try {
         await slashcmd.run({ ...bot, interaction })
     } catch (error) {
+        var isSend = false
+        var message = `Something went wrong: ${error.message}`
+        try {
+            await interaction.reply(message)
+            isSend = true
+        } catch {}
+        if (!isSend) {
+            try {
+                await interaction.editReply(message)
+                isSend = true
+            } catch {}
+        }
+        if (!isSend) {
+            try {
+                await interaction.channel.send(message)
+                isSend = true
+            } catch {}
+        }
         addLog(error, error.stack)
     }
 }

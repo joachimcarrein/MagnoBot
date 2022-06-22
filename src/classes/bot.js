@@ -22,17 +22,17 @@ class Bot {
     start = function() {
         this.client = new Discord.Client({
             intents: [
-                "GUILD_MEMBERS",
-                "GUILDS",
-                "GUILD_MESSAGES",
-                "GUILD_MESSAGE_REACTIONS"
+               "GUILDS",
+               "GUILD_MEMBERS",
+               "GUILD_MESSAGES",
+               "GUILD_MESSAGE_REACTIONS"
             ],
             partials: [
-                "REACTION",
                 // "MESSAGE",
                 // "CHANNEL",
                 // "GUILD_MEMBER",
-                // "USER"
+                // "USER",
+                "REACTION"
             ]
         })
 

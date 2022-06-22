@@ -15,7 +15,7 @@ module.exports = {
     ],
     run: async ({ client, interaction }) => {
         let target = interaction.options.getInteger('number')
-        
+
         await interaction.deferReply()
 
         // default deletes previous message / command itself gives no message
@@ -24,7 +24,7 @@ module.exports = {
         //if argument is provided, we need to convert it from string to number
         if (!!target) {
             num = target
-        }        
+        }
 
         todo = num
 
@@ -33,8 +33,6 @@ module.exports = {
             await client.functions.get("functions").delay(500)
             todo -= 100
         }
-
-        //bulk delete the messages
         await interaction.channel.bulkDelete(todo);
 
         //notify channel of deleted messages

@@ -3,7 +3,7 @@ const Blacklist = require('../_database/models/blacklistSchema')
 const Levels = require('discord-xp')
 const { addLog } = require('../functions/logs')
 
-const { getPermissionLevel, getPermissionName } = require("../handlers/permissions")
+const { getPermissionLevel } = require("../handlers/permissions")
 
 module.exports = {
     name: "messageCreate",
@@ -56,6 +56,9 @@ module.exports = {
                 await message.reply(errMsg)
             }
             else {
+                try {
+                    await message.reply(`Something went wrong: ${error.message}`)
+                } catch { }
                 addLog(errMsg, error.stack)
             }
         }
