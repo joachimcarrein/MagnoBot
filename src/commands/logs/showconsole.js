@@ -11,7 +11,7 @@ module.exports = {
         let number = args[0]
         if (!number) number = 15
 
-        const path = './src/daemon/trace.out.log'
+        const path = './src/daemon/magnobot.out.log'
         if (fs.existsSync(path)) {
             let console = await readLastLines.read(path, number)
             await message.reply({
