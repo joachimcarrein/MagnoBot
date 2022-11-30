@@ -1,3 +1,4 @@
+const { ApplicationCommandOptionType } = require('discord.js');
 const Levels = require('discord-xp')
 module.exports = {
     name: "addxp",
@@ -8,13 +9,13 @@ module.exports = {
         {
             name: "user",
             description: "The user you want to change.",
-            type: "USER",
+            type: ApplicationCommandOptionType.User,
             required: true
         },
         {
             name: "xp",
             description: "The amount of XP to add.",
-            type: "INTEGER",
+            type: ApplicationCommandOptionType.Integer,
             required: true
         },
     ],

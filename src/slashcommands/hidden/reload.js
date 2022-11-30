@@ -1,3 +1,4 @@
+const { ApplicationCommandOptionType } = require('discord.js');
 const Discord = require("discord.js")
 const fs = require("fs")
 
@@ -6,13 +7,19 @@ module.exports = {
     category: "hidden",
     Permissions: 0,
     description: "reloads the bot",
-    usage: "[force]",
-    run: async (bot) => {
-        
-        const {args} = bot
-        const force = args.join(" ") === "1"
+    options: [
+        {
+            name: "force",
+            description: "Force Slash reload",
+            type: ApplicationCommandOptionType.Boolean,
+            required: false
+        }
+    ],
+    run: async (bot) => {        
 
         var { client, interaction } = bot;
+        const force = interaction.options.getBoolean("force")
+        
         await client.loadCommands(bot, true);
         await client.loadEvents(bot, true);
         await client.loadButtons(bot, true)
