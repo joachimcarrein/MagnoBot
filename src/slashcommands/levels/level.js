@@ -1,5 +1,7 @@
 const Levels = require('discord-xp')
 const Discord = require("discord.js")
+const { ApplicationCommandOptionType } = require('discord.js');
+
 module.exports = {
     name: "level",
     category: "levels",
@@ -8,7 +10,7 @@ module.exports = {
         {
             name: "user",
             description: "The user you want the level of.",
-            type: "USER",
+            type: ApplicationCommandOptionType.User,
             required: false
         },
     ],

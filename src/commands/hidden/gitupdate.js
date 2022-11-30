@@ -18,7 +18,7 @@ module.exports = {
                     result += 'stderr: ' + stderr + '\n'
                 message.reply({
                     content: result,
-                    flags: [Discord.MessageFlags.FLAGS.SUPPRESS_EMBEDS]
+                    flags: [Discord.MessageFlags.SuppressEmbeds]
                 })
                 if (error !== null) {
                     addLog('exec error: ' + error);

@@ -29,8 +29,8 @@ class HangManGame {
         this.wrongs = 0
         this.debug = debug
 
-        let embed = new Discord.MessageEmbed()
-            .setColor("BLUE")
+        let embed = new Discord.EmbedBuilder()
+            .setColor(Discord.Colors.Blue)
             .setAuthor({ name: "Hangman game", iconURL: "https://imgur.com/0guxxtY.png" })
             .setDescription(this.getDescription())
             .addField('Wrong Guesses', `${this.wrongs} / 6`)
@@ -80,8 +80,8 @@ class HangManGame {
 
         if (this.inGame) {
 
-            let embed = new Discord.MessageEmbed()
-                .setColor("BLUE")
+            let embed = new Discord.EmbedBuilder()
+                .setColor(Discord.Colors.Blue)
                 .setAuthor({ name: "Hangman game", iconURL: "https://imgur.com/0guxxtY.png" })
                 .setDescription(this.getDescription())
                 .addField('Letters Guessed', this.guessed.length == 0 ? '\u200b' : this.guessed.join(" "))
@@ -102,8 +102,8 @@ class HangManGame {
 
         this.inGame = false
 
-        let embed = new Discord.MessageEmbed()
-            .setColor("BLUE")
+        let embed = new Discord.EmbedBuilder()
+            .setColor(Discord.Colors.Blue)
             .setAuthor({ name: "Hangman game", iconURL: "https://imgur.com/0guxxtY.png" })
             .setDescription((win ? "**Chat Wins!**" : "**Chat losses**"))
             .addField('Word was', this.word)

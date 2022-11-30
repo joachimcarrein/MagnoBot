@@ -11,8 +11,8 @@ module.exports = {
 
         const leaderboard = await Levels.computeLeaderboard(client, rawLeaderboard, true)
 
-        const embed = new Discord.MessageEmbed()
-            .setColor("RED")
+        const embed = new Discord.EmbedBuilder()
+            .setColor(Discord.Colors.Red)
             .setTitle("Leaderboard")
 
         leaderboard.forEach(e => {

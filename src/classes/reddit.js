@@ -1,5 +1,5 @@
 const superagent = require("superagent");
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder, Colors } = require("discord.js")
 const { addLog } = require('../functions/logs')
 
 class Reddit {
@@ -25,8 +25,8 @@ class Reddit {
             if (img.endsWith("gifv")) img = img.slice(0, -1)
             if (img.includes('redgifs.com')) { img = await fetchRedGifUrl(client, img) }
 
-            let embed = new MessageEmbed()
-                .setColor("PURPLE")
+            let embed = new EmbedBuilder()
+                .setColor(Colors.Purple)
                 .setTitle(chosenOption.data.title)
                 .setDescription(chosenOption.data.subreddit_name_prefixed + ' - ' + chosenOption.data.author)
                 .setImage(img)

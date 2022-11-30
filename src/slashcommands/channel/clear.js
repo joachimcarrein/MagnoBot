@@ -1,14 +1,17 @@
+const { ApplicationCommandOptionType } = require('discord.js');
+
 module.exports = {
     name: "clear",
     aliases: ["c"],
     category: "channel",
     permissions: 20,
     description: "Clears a number of message in the channel",
+    default_member_permissions: PermissionFlagsBits.ManageChannels,
     options: [
         {
             name: "number",
             description: "The number of messages you want cleared",
-            type: "INTEGER",
+            type: ApplicationCommandOptionType.Integer,
             minValue: 1,
             required: false
         },

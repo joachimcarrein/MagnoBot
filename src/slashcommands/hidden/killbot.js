@@ -1,3 +1,4 @@
+const { ApplicationCommandOptionType } = require('discord.js');
 module.exports = {
     name: "killbot",
     category: "hidden",
@@ -7,7 +8,7 @@ module.exports = {
         {
             name: "server",
             description: "The hostname of the bot process you want killed",
-            type: "STRING",
+            type: ApplicationCommandOptionType.String,
             required: false
         },
     ],

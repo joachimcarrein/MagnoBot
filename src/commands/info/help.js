@@ -46,8 +46,8 @@ function getAll(client, message, prefix) {
     // }
 
     //FIX change image to bot pfp auto link
-    var em = new Discord.MessageEmbed()
-        .setColor("RANDOM")
+    var em = new Discord.EmbedBuilder()
+        .setColor(Discord.Colors.Blurple)
         .setAuthor({
             name: "Bot Commands",
             iconURL: message.guild.iconURL({ dynamic: true })
@@ -66,14 +66,14 @@ function getAll(client, message, prefix) {
     return em
 }
 function getCMD(client, message, input, prefix) {
-    const embed = new Discord.MessageEmbed();
+    const embed = new Discord.EmbedBuilder();
     const cmd =
         client.commands.get(input.toLowerCase()) ||
         client.commands.get(client.aliases.get(input.toLowerCase()));
     let info = `No information found for command **${input.toLowerCase()}**`;
     if (!cmd)
         //no specified command
-        return message.channel.send(embed.setColor("RED").setDescription(info));
+        return message.channel.send(embed.setColor(Discord.Colors.Red).setDescription(info));
 
     if (cmd.name) info = `**Command name**: ${cmd.name}`;
     if (cmd.aliases)
@@ -83,5 +83,5 @@ function getCMD(client, message, input, prefix) {
         info += `\n**Usage**: ${prefix}${cmd.name} ${cmd.usage}`;
         embed.setFooter({ text: `Syntax: <> = required, [] = optional` });
     }
-    return embed.setColor("GREEN").setDescription(info)
+    return embed.setColor(Discord.Colors.Green).setDescription(info)
 }

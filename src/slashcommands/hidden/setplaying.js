@@ -1,3 +1,4 @@
+const { ApplicationCommandOptionType } = require('discord.js');
 module.exports = {
     name: "setplaying",
     category: "hidden",
@@ -7,7 +8,7 @@ module.exports = {
         {
             name: "status",
             description: "The new bot status.",
-            type: "STRING",
+            type: ApplicationCommandOptionType.String,
             required: false
         },
     ],

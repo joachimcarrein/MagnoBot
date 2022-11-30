@@ -1,5 +1,6 @@
 const Levels = require('discord-xp')
 const { addLog } = require('../../functions/logs')
+const { ApplicationCommandOptionType } = require('discord.js');
 
 module.exports = {
     name: "editlevel",
@@ -10,13 +11,13 @@ module.exports = {
         {
             name: "user",
             description: "User to change",
-            type: "USER",
+            type: ApplicationCommandOptionType.User,
             required: true
         },
         {
             name: "what",
             description: "What to update",
-            type: "STRING",
+            type: ApplicationCommandOptionType.String,
             choices: [
                 {
                     name: "xp",
@@ -32,7 +33,7 @@ module.exports = {
         {
             name: "action",
             description: "What to do",
-            type: "STRING",
+            type: ApplicationCommandOptionType.String,
             choices: [
                 {
                     name: "add",
@@ -52,7 +53,7 @@ module.exports = {
         {
             name: "number",
             description: "amount to change",
-            type: "INTEGER",
+            type: ApplicationCommandOptionType.Integer,
             required: true
         },
     ],

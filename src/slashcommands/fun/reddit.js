@@ -1,3 +1,5 @@
+const { ApplicationCommandOptionType } = require('discord.js');
+
 module.exports = {
     name: "reddit",
     category: "fun",
@@ -6,7 +8,7 @@ module.exports = {
         {
             name: "subreddit",
             description: "The subreddit you want an image of.",
-            type: "STRING",
+            type: ApplicationCommandOptionType.String,
             required: true
         },
     ],

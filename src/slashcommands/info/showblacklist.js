@@ -20,7 +20,7 @@ module.exports = {
             return await interaction.reply('blacklist is empty')
         }
 
-        let embed = new Discord.MessageEmbed()
+        let embed = new Discord.EmbedBuilder()
             .setColor("#8DC685")
             .setTitle("Blacklisted users")
             .setDescription(client.functions.get("functions").autoAlign(printProfile))

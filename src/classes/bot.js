@@ -22,17 +22,14 @@ class Bot {
     start = function() {
         this.client = new Discord.Client({
             intents: [
-               "GUILDS",
-               "GUILD_MEMBERS",
-               "GUILD_MESSAGES",
-               "GUILD_MESSAGE_REACTIONS"
+                Discord.GatewayIntentBits.Guilds,
+                Discord.GatewayIntentBits.GuildMembers,
+                Discord.GatewayIntentBits.MessageContent,
+                Discord.GatewayIntentBits.GuildMessages,
+                Discord.GatewayIntentBits.GuildMessageReactions
             ],
             partials: [
-                // "MESSAGE",
-                // "CHANNEL",
-                // "GUILD_MEMBER",
-                // "USER",
-                "REACTION"
+                Discord.Partials.Reaction
             ]
         })
 
@@ -61,7 +58,7 @@ class Bot {
         this.client.loadSlashCommands = (bot, reload) => require("../handlers/slashcommands")(bot, reload)
         this.client.loadSlashCommands(this, false)
 
-        this.client.announceSlashCommands = (bot, reload) => require("../handlers/announceslash")(bot)
+        this.client.announceSlashCommands = (bot, guildID, forceGlobal) => require("../handlers/announceslash")(bot, guildID, forceGlobal)
 
         this.client.login(process.env.DISCORD_TOKEN)
     }

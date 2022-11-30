@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Blacklist = require('../../_database/models/blacklistSchema')
 const { addLog } = require('../../functions/logs')
+const { ApplicationCommandOptionType } = require('discord.js');
 
 module.exports = {
     name: "blacklist",
@@ -11,13 +12,13 @@ module.exports = {
         {
             name: "user",
             description: "The user to add to the blacklist",
-            type: "USER",
+            type: ApplicationCommandOptionType.User,
             required: true
         },
         {
             name: "reason",
             description: "The reason for adding the user to the blacklist",
-            type: "STRING",
+            type: ApplicationCommandOptionType.String,
             required: true
         },
     ],

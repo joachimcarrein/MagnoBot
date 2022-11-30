@@ -1,3 +1,4 @@
+const { ApplicationCommandOptionType } = require('discord.js');
 module.exports = {
     name: "restartbot",
     category: "hidden",
@@ -7,7 +8,7 @@ module.exports = {
         {
             name: "server",
             description: "The hostname of the bot process you want to restart",
-            type: "STRING",
+            type: ApplicationCommandOptionType.String,
             required: false
         },
     ],

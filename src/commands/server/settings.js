@@ -10,9 +10,9 @@ module.exports = {
         let guildSettings = await client.functions.get("functions").getGuildSettings(message.guild.id)
 
         if (!args.length) {
-            let embed = new Discord.MessageEmbed()
+            let embed = new Discord.EmbedBuilder()
                 .setTitle(`MagnoBot Server Settings: ${message.guild.name}`)
-                .setColor('RED')
+                .setColor(Discord.Colors.Red)
                 .setDescription("If nothing is shown, there are no properties assigned\nProperties: Prefix")
                 
                 if (guildSettings.prefix) embed.addField("Prefix",guildSettings.prefix)

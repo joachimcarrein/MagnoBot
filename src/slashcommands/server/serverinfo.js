@@ -1,4 +1,6 @@
 const Discord = require("discord.js")
+const { ApplicationCommandOptionType } = require('discord.js');
+
 module.exports = {
     name: "serverinfo",
     category: "server",
@@ -7,7 +9,7 @@ module.exports = {
         {
             name: "choice",
             description: "Your selected choice.",
-            type: "STRING",
+            type: ApplicationCommandOptionType.String,
             choices: [ 
                 {
                     name: "members", 
@@ -27,8 +29,8 @@ module.exports = {
     ],
     run: async ({ client, interaction }) => {
         let choice = interaction.options.getString("choice")
-        let serverEmbed = new Discord.MessageEmbed()
-            .setColor("DARK_GOLD")
+        let serverEmbed = new Discord.EmbedBuilder()
+            .setColor(Discord.Colors.DarkGold)
 
         switch (choice) {
             case 'members':

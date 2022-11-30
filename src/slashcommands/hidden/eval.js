@@ -1,3 +1,4 @@
+const { ApplicationCommandOptionType } = require('discord.js');
 const fs = require("fs")
 module.exports = {
     name: "eval",
@@ -8,7 +9,7 @@ module.exports = {
         {
             name: "script",
             description: "A piece of javascript",
-            type: "STRING",
+            type: ApplicationCommandOptionType.String,
             required: true
         },
     ],

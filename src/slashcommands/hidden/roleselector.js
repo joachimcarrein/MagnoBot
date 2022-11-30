@@ -1,4 +1,4 @@
-const { MessageActionRow, MessageButton, MessageEmbed } = require("discord.js")
+const { MessageActionRow, MessageButton, EmbedBuilder, ApplicationCommandOptionType } = require("discord.js")
 const Discord = require("discord.js")
 
 module.exports = {
@@ -10,31 +10,31 @@ module.exports = {
         {
             name: "role1",
             description: "Button roles",
-            type: "ROLE",
+            type: ApplicationCommandOptionType.Role,
             required: true
         },
         {
             name: "role2",
             description: "Button roles",
-            type: "ROLE",
+            type: ApplicationCommandOptionType.Role,
             required: false
         },
         {
             name: "role3",
             description: "Button roles",
-            type: "ROLE",
+            type: ApplicationCommandOptionType.Role,
             required: false
         },
         {
             name: "role4",
             description: "Button roles",
-            type: "ROLE",
+            type: ApplicationCommandOptionType.Role,
             required: false
         },
         {
             name: "role5",
             description: "Button roles",
-            type: "ROLE",
+            type: ApplicationCommandOptionType.Role,
             required: false
         },
     ],
@@ -55,7 +55,7 @@ module.exports = {
 
         await interaction.reply({
             embeds: [
-                new MessageEmbed().setTitle("Select Role").setDescription("Select roles from the buttons below").setColor("BLUE")
+                new EmbedBuilder().setTitle("Select Role").setDescription("Select roles from the buttons below").setColor(Discord.Colors.Blue)
             ],
             components: [
                 new MessageActionRow().addComponents(buttons)

@@ -1,3 +1,4 @@
+const { ApplicationCommandOptionType, PermissionFlagsBits } = require('discord.js');
 const { addLog } = require('../../functions/logs')
 
 module.exports = {
@@ -6,11 +7,12 @@ module.exports = {
     permissions: 10,
     description: "Clones the channel and deletes the original",
     usage: "[reason]",
+    default_member_permissions: PermissionFlagsBits.Administrator,
     options: [
         {
             name: "reason",
             description: "The reason for the nuke.",
-            type: "STRING",
+            type: ApplicationCommandOptionType.String,
             required: false
         },
     ],

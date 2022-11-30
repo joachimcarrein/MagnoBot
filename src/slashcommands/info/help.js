@@ -1,4 +1,5 @@
 const Discord = require("discord.js")
+const { ApplicationCommandOptionType } = require('discord.js');
 
 const run = async ({ client, interaction }) => {
     let command = interaction.options.getString("command")
@@ -25,8 +26,8 @@ function getAll(client, interaction) {
     });
 
     //FIX change image to bot pfp auto link
-    var em = new Discord.MessageEmbed()
-        .setColor("RANDOM")
+    var em = new Discord.EmbedBuilder()
+        .setColor(Discord.Colors.Blurple)
         .setAuthor({
             name: "Bot Commands",
             iconURL: client.user.displayAvatarURL()
@@ -45,13 +46,13 @@ function getAll(client, interaction) {
     return em
 }
 function getCMD(client, input) {
-    const embed = new Discord.MessageEmbed();
+    const embed = new Discord.EmbedBuilder();
     const cmd =
         client.slashcommands.get(input.toLowerCase())
     let info = `No information found for command **${input.toLowerCase()}**`;
     if (!cmd)
         //no specified command
-        return embed.setColor("RED").setDescription(info)
+        return embed.setColor(Discord.Colors.Red).setDescription(info)
 
     if (cmd.name) info = `**Command name**: ${cmd.name}`;
     if (cmd.description) info += `\n**Description**: ${cmd.description}`;
@@ -77,7 +78,7 @@ function getCMD(client, input) {
         info += `\n**Parameters**: ${options}`     
         embed.setFooter({ text: `Syntax: <> = required, [] = optional` });
     }
-    return embed.setColor("GREEN").setDescription(info)
+    return embed.setColor(Discord.Colors.Green).setDescription(info)
 }
 
 
@@ -89,7 +90,7 @@ module.exports = {
         {
             name: "command",
             description: "The command you want info on.",
-            type: "STRING",
+            type: ApplicationCommandOptionType.String,
             required: false
         },
     ],

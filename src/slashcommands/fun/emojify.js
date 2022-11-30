@@ -1,3 +1,5 @@
+const { ApplicationCommandOptionType } = require('discord.js');
+
 module.exports = {
     name: "emojify",
     aliases: [],
@@ -7,7 +9,7 @@ module.exports = {
         {
             name: "text",
             description: "The text you want emojified",
-            type: "STRING",
+            type: ApplicationCommandOptionType.String,
             required: true
         },
     ],

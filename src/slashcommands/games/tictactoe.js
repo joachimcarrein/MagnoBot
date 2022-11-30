@@ -1,3 +1,4 @@
+const { ApplicationCommandOptionType } = require('discord.js');
 const ttt = require("../../buttons/ttt")
 
 module.exports = {
@@ -8,7 +9,7 @@ module.exports = {
         {
             name: "options",
             description: "Game options",
-            type: "STRING",
+            type: ApplicationCommandOptionType.String,
             choices: [
                 {
                     name: "2 Players",

@@ -1,3 +1,5 @@
+const { ApplicationCommandOptionType } = require('discord.js');
+
 module.exports = {
     name: "botlogs",
     category: "logs",
@@ -7,7 +9,7 @@ module.exports = {
         {
             name: "number",
             description: "The number of lines to return.",
-            type: "INTEGER",
+            type: ApplicationCommandOptionType.Integer,
             required: false,
             minValue: 1
         },

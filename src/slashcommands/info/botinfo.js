@@ -8,8 +8,8 @@ module.exports = {
     description: 'Displays bot info',
     run: async ({ client, interaction }) => {
         const botMember = await interaction.guild.members.fetch(client.user.id)
-        let botembed = new Discord.MessageEmbed()
-            .setThumbnail(client.user.displayAvatarURL)
+        let botembed = new Discord.EmbedBuilder()
+            .setThumbnail(client.user.displayAvatarURL())
             .setTitle("About this bot:")
             .setAuthor({ name: client.user.username, iconURL: client.user.displayAvatarURL() })
             .setDescription("Simple bot by MagnoBE")

@@ -1,4 +1,5 @@
 const Discord = require("discord.js")
+const { ApplicationCommandOptionType } = require('discord.js');
 
 module.exports = {
     name: "choose",
@@ -8,7 +9,7 @@ module.exports = {
         {
             name: "choices",
             description: "The choices, separate with space of |.",
-            type: "STRING",
+            type: ApplicationCommandOptionType.String,
             required: true
         },
     ],
@@ -18,8 +19,8 @@ module.exports = {
 
         const choice = choices[Math.floor(Math.random() * choices.length)]
 
-        let embed = new Discord.MessageEmbed()
-            .setColor("GOLD")
+        let embed = new Discord.EmbedBuilder()
+            .setColor(Discord.Colors.Gold)
             .setTitle("I choose:")
             .setDescription(`\`\`\`css\n${choice.trim()}\`\`\``)
 

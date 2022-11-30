@@ -8,8 +8,8 @@ module.exports = {
 
         let message
 
-        let embed = new Discord.MessageEmbed()
-            .setColor("BLUE")
+        let embed = new Discord.EmbedBuilder()
+            .setColor(Discord.Colors.Blue)
             .setDescription(`Asking the 🎱 your question..`)
             .setFooter({ text: "Please wait..." })
 
@@ -17,7 +17,7 @@ module.exports = {
 
         await client.functions.get("functions").delay(EightBall.WaitTimes[Math.floor(Math.random() * EightBall.WaitTimes.length)]);
         const randomChoice = EightBall.Answers[Math.floor(Math.random() * EightBall.Answers.length)];
-        embed = new Discord.MessageEmbed()
+        embed = new Discord.EmbedBuilder()
             .setDescription(`Our 🎱 replied with:\`\`\`css\n${randomChoice.answer}\`\`\``)
             .setColor(randomChoice.color)
             

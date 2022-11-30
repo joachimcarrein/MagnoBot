@@ -1,3 +1,4 @@
+const { ApplicationCommandOptionType } = require('discord.js');
 const RockPaperScissors = require("../../classes/rockpaperscissors")
 
 module.exports = {
@@ -8,7 +9,7 @@ module.exports = {
         {
             name: "choice",
             description: "Your selected choice.",
-            type: "STRING",
+            type: ApplicationCommandOptionType.String,
             choices: [ 
                 {
                     name: "rock", 

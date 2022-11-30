@@ -1,3 +1,4 @@
+const { ApplicationCommandOptionType } = require('discord.js');
 const Blacklist = require('../../_database/models/blacklistSchema')
 const { addLog } = require('../../functions/logs')
 
@@ -10,7 +11,7 @@ module.exports = {
         {
             name: "user",
             description: "The user to add to the blacklist",
-            type: "USER",
+            type: ApplicationCommandOptionType.User,
             required: true
         }
     ],
