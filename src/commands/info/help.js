@@ -6,9 +6,10 @@ module.exports = {
     category: "info",
     description: "Returns all commands, or one specific command's info",
     usage: "[command | alias]",
+    global: true,
     run: async (bot) => {
         let { client, message, args } = bot;
-
+    
         let embed = null
         let guildSettings = await client.functions.get("functions").getGuildSettings(message.guild.id)
 
