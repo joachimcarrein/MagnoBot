@@ -55,7 +55,7 @@ function getAll(client, message, prefix) {
         })
 
     embedfields.forEach(b => {
-        em.addFiels({ name: b[0], value: b[1], inline: true });
+        em.addFields({ name: b[0], value: b[1], inline: true });
     });
 
     em.setFooter({
