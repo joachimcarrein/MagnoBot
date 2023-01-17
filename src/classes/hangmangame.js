@@ -33,11 +33,11 @@ class HangManGame {
             .setColor(Discord.Colors.Blue)
             .setAuthor({ name: "Hangman game", iconURL: "https://imgur.com/0guxxtY.png" })
             .setDescription(this.getDescription())
-            .addField('Wrong Guesses', `${this.wrongs} / 6`)
-            .addField('How To Play', "React to this message using the emojis that look like letters (🅰️, 🇹, ❌, 💤, ...)")
+            .addFields({ name: 'Wrong Guesses', value: `${this.wrongs} / 6` })
+            .addFields({ name: 'How To Play', Value: "React to this message using the emojis that look like letters (🅰️, 🇹, ❌, 💤, ...)" })
 
         if (this.debug)
-            embed.addField("Debug", "word is " + this.word)
+            embed.addFields({ name: "Debug", value: "word is " + this.word })
 
         embed = this.client.functions.get("functions").setEmbedFooter(embed, this.client)
 
@@ -84,12 +84,12 @@ class HangManGame {
                 .setColor(Discord.Colors.Blue)
                 .setAuthor({ name: "Hangman game", iconURL: "https://imgur.com/0guxxtY.png" })
                 .setDescription(this.getDescription())
-                .addField('Letters Guessed', this.guessed.length == 0 ? '\u200b' : this.guessed.join(" "))
-                .addField('Wrong Guesses', `${this.wrongs} / 6`)
-                .addField('How To Play', "React to this message using the emojis that look like letters (🅰️, 🇹, ❌, 💤, ...)")
+                .addFields({ name: 'Letters Guessed', value: this.guessed.length == 0 ? '\u200b' : this.guessed.join(" ") })
+                .addFields({ name: 'Wrong Guesses', value: `${this.wrongs} / 6` })
+                .addFields({ name: 'How To Play', value: "React to this message using the emojis that look like letters (🅰️, 🇹, ❌, 💤, ...)" })
 
             if (this.debug)
-                embed.addField("Debug", "word is " + this.word)
+                embed.addFields({ name: "Debug", value: "word is " + this.word })
 
             embed = this.client.functions.get("functions").setEmbedFooter(embed, this.client)
 
@@ -106,8 +106,8 @@ class HangManGame {
             .setColor(Discord.Colors.Blue)
             .setAuthor({ name: "Hangman game", iconURL: "https://imgur.com/0guxxtY.png" })
             .setDescription((win ? "**Chat Wins!**" : "**Chat losses**"))
-            .addField('Word was', this.word)
-            .addField('Wrong Guesses', `${this.wrongs} / 6`)
+            .addFields({ name: 'Word was', value: this.word })
+            .addFields({ name: 'Wrong Guesses', value: `${this.wrongs} / 6` })
 
         embed = this.client.functions.get("functions").setEmbedFooter(embed, this.client)
 

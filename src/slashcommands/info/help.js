@@ -34,7 +34,7 @@ function getAll(client, interaction) {
         })
 
     embedfields.forEach(b => {
-        em.addField(b[0], b[1]);
+        em.addFields({ name: b[0], value: b[1] });
     });
 
     em.setFooter({
@@ -65,7 +65,7 @@ function getCMD(client, input) {
             if (!option.required) {
                 bstr = "["
                 estr = "]"
-            } 
+            }
             let choices = ` - ${option.type}`
             if (option.choices) {
                 choices = ` - ${option.choices.map(c => c.name).join(' / ')}`
@@ -75,7 +75,7 @@ function getCMD(client, input) {
         })
 
         info += `\n**Usage**: /${cmd.name} ${parameters}`;
-        info += `\n**Parameters**: ${options}`     
+        info += `\n**Parameters**: ${options}`
         embed.setFooter({ text: `Syntax: <> = required, [] = optional` });
     }
     return embed.setColor(Discord.Colors.Green).setDescription(info)

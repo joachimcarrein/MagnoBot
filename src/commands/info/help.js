@@ -9,18 +9,18 @@ module.exports = {
     global: true,
     run: async (bot) => {
         let { client, message, args } = bot;
-    
+
         let embed = null
         let guildSettings = await client.functions.get("functions").getGuildSettings(message.guild.id)
 
-        if (args[0]) 
+        if (args[0])
             embed = getCMD(client, message, args[0], guildSettings.prefix);
-        else 
+        else
             embed = getAll(client, message, guildSettings.prefix);
 
         if (!embed) return
 
-        return message.channel.send({embeds: [embed]})
+        return message.channel.send({ embeds: [embed] })
     },
     getCMD,
     getAll
@@ -55,7 +55,7 @@ function getAll(client, message, prefix) {
         })
 
     embedfields.forEach(b => {
-        em.addField(b[0], b[1], true);
+        em.addFiels({ name: b[0], value: b[1], inline: true });
     });
 
     em.setFooter({

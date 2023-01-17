@@ -16,7 +16,7 @@ module.exports = {
             .setTitle("Leaderboard")
 
         leaderboard.forEach(e => {
-            embed.addField(`**${e.position}**. ${e.username}`, `**Level**: \`${e.level}\`\n**XP**: \`${e.xp}\``)
+            embed.addFields({ name: `**${e.position}**. ${e.username}`, value: `**Level**: \`${e.level}\`\n**XP**: \`${e.xp}\`` })
         })
         await interaction.reply({ embeds: [embed] })
     }

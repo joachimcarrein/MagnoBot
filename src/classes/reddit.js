@@ -30,13 +30,13 @@ class Reddit {
                 .setTitle(chosenOption.data.title)
                 .setDescription(chosenOption.data.subreddit_name_prefixed + ' - ' + chosenOption.data.author)
                 .setImage(img)
-                .addField("Information: ", "Upvotes: " + chosenOption.data.ups + " / Comments: " + chosenOption.data.num_comments)
+                .addFields({ name: "Information: ", value: "Upvotes: " + chosenOption.data.ups + " / Comments: " + chosenOption.data.num_comments })
                 .setURL("https://reddit.com" + chosenOption.data.permalink)
 
             embed = client.functions.get("functions").setEmbedFooter(embed, client)
 
             return await interaction.reply({ embeds: [embed] });
-        } catch (error) {            
+        } catch (error) {
             addLog(error, error.stack)
             return await interaction.reply("Could not fetch from reddit.\n" + error.toString())
         }
