@@ -34,7 +34,7 @@ class HangManGame {
             .setAuthor({ name: "Hangman game", iconURL: "https://imgur.com/0guxxtY.png" })
             .setDescription(this.getDescription())
             .addFields({ name: 'Wrong Guesses', value: `${this.wrongs} / 6` })
-            .addFields({ name: 'How To Play', Value: "React to this message using the emojis that look like letters (🅰️, 🇹, ❌, 💤, ...)" })
+            .addFields({ name: 'How To Play', value: "React to this message using the emojis that look like letters (🅰️, 🇹, ❌, 💤, ...)" })
 
         if (this.debug)
             embed.addFields({ name: "Debug", value: "word is " + this.word })
