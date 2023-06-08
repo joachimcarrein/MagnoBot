@@ -9,8 +9,8 @@ class Reddit {
     async getReddit(client, interaction, subReddit) {
         try {
             let url = `https://www.reddit.com/r/${subReddit}.json?sort=top&t=week`
-            const result = await (await client.functions.get("functions").fetch(url, null)).text()
-            let body = JSON.parse(result)
+            let result = await client.functions.get("functions").fetch(url, null)
+            let body = await result.json()
 
             //= await superagent
             //    .get(url)
