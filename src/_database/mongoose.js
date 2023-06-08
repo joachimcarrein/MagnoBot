@@ -10,6 +10,8 @@ module.exports = {
             family: 4
         }
 
+        mongoose.set('strictQuery', false)
+
         mongoose.connect(connString, dbOptions)
         mongoose.Promise = global.Promise
         mongoose.connection.on('connected', () => {

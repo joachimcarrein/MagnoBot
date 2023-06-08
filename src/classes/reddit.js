@@ -8,9 +8,13 @@ class Reddit {
 
     async getReddit(client, interaction, subReddit) {
         try {
-            const { body } = await superagent
-                .get(`https://www.reddit.com/r/${subReddit}.json?sort=top&t=week`)
-                .query({ limit: 800 });
+            let url = `https://www.reddit.com/r/${subReddit}.json?sort=top&t=week`
+            const result = await (await client.functions.get("functions").fetch(url, null)).text()
+            let body = JSON.parse(result)
+
+            //= await superagent
+            //    .get(url)
+            //    .query({ limit: 800 });
 
             let allowed = interaction.channel.nsfw ? body.data.children : body.data.children.filter(post => !post.data.over_18);
             allowed = allowed.filter(post => this.isAllowedType(post.data.url, post.data.url_overridden_by_dest))
