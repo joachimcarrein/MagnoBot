@@ -15,7 +15,7 @@ module.exports = {
                 .setColor(Discord.Colors.Red)
                 .setDescription("If nothing is shown, there are no properties assigned\nProperties: Prefix")
                 
-                if (guildSettings.prefix) embed.addField("Prefix",guildSettings.prefix)
+                if (guildSettings.prefix) embed.addFields({name: "Prefix", value: guildSettings.prefix})
 
                 embed = client.functions.get("functions").setEmbedFooter(embed, client)
                 

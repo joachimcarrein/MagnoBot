@@ -11,8 +11,8 @@ module.exports = {
         }
 
         mongoose.set('strictQuery', false)
-
-        mongoose.connect(connString, dbOptions)
+        
+        mongoose.connect(connString, dbOptions)        
         mongoose.Promise = global.Promise
         mongoose.connection.on('connected', () => {
             console.log('bot has connected to mongodb')
